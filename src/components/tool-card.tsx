@@ -1,5 +1,4 @@
-import { Verified, Heart, ExternalLink } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { Verified, Heart, Star } from "lucide-react";
 
 interface ToolCardProps {
   name: string;
@@ -10,8 +9,6 @@ interface ToolCardProps {
   indieMade?: boolean;
   featured?: boolean;
   logoUrl?: string;
-  url?: string;
-  className?: string;
 }
 
 export function ToolCard({
@@ -19,79 +16,84 @@ export function ToolCard({
   description,
   category,
   pricing,
-  verified,
-  indieMade,
-  featured,
+  verified = false,
+  indieMade = false,
+  featured = false,
   logoUrl,
-  url,
-  className,
 }: ToolCardProps) {
-  const content = (
-    <div
-      className={cn(
-        "group relative bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-xl p-6 transition-all hover:border-[hsl(var(--primary))]/50 hover:shadow-lg",
-        featured && "border-[hsl(var(--featured))]/50",
-        className
+  return (
+    <div className={`
+      group relative bg-[hsl(var(--card))] border rounded-xl p-5 
+      transition-all duration-200 hover:shadow-lg hover:shadow-[hsl(var(--primary))]/5
+      ${featured 
+        ? "border-[hsl(var(--featured))]/50 hover:border-[hsl(var(--featured))]" 
+        : "border-[hsl(var(--border))] hover:border-[hsl(var(--primary))]/50"
+      }
+    `}>
+      {/* Featured Badge */}
+      {featured && (
+        <div className="absolute -top-2 -right-2">
+          <span className="flex items-center gap-1 px-2 py-1 bg-[hsl(var(--featured))] text-black text-xs font-medium rounded-full">
+            <Star className="w-3 h-3" />
+            Featured
+          </span>
+        </div>
       )}
-    >
-      {/* Badges */}
-      <div className="flex items-center gap-2 mb-4">
-        {verified && (
-          <span className="inline-flex items-center gap-1 px-2 py-1 bg-[hsl(var(--accent))]/20 text-[hsl(var(--accent))] text-xs rounded-full">
-            <Verified className="w-3 h-3" />
-            Verified
-          </span>
-        )}
-        {indieMade && (
-          <span className="inline-flex items-center gap-1 px-2 py-1 bg-[hsl(var(--featured))]/20 text-[hsl(var(--featured))] text-xs rounded-full">
-            <Heart className="w-3 h-3" />
-            Indie Made
-          </span>
-        )}
-        {featured && (
-          <span className="inline-flex items-center gap-1 px-2 py-1 bg-[hsl(var(--featured))]/20 text-[hsl(var(--featured))] text-xs rounded-full">
-            ⭐ Featured
-          </span>
-        )}
+
+      {/* Header */}
+      <div className="flex items-start gap-4 mb-3">
+        {/* Logo */}
+        <div className="w-12 h-12 rounded-lg bg-[hsl(var(--background))] border border-[hsl(var(--border))] flex items-center justify-center text-xl flex-shrink-0">
+          {logoUrl ? (
+            <img src={logoUrl} alt={name} className="w-8 h-8 rounded" />
+          ) : (
+            <span className="text-2xl">
+              {category === "agents" && "🤖"}
+              {category === "coding" && "💻"}
+              {category === "marketing" && "📢"}
+              {category === "ops" && "⚡"}
+              {category === "productivity" && "📊"}
+              {!["agents", "coding", "marketing", "ops", "productivity"].includes(category) && "🔧"}
+            </span>
+          )}
+        </div>
+
+        {/* Title & Badges */}
+        <div className="flex-1 min-w-0">
+          <h3 className="font-semibold text-lg group-hover:text-[hsl(var(--primary))] transition-colors truncate">
+            {name}
+          </h3>
+          <div className="flex items-center gap-2 mt-1">
+            {verified && (
+              <span className="inline-flex items-center gap-1 text-xs text-[hsl(var(--accent))]">
+                <Verified className="w-3 h-3" />
+                Verified
+              </span>
+            )}
+            {indieMade && (
+              <span className="inline-flex items-center gap-1 text-xs text-[hsl(var(--featured))]">
+                <Heart className="w-3 h-3" />
+                Indie
+              </span>
+            )}
+          </div>
+        </div>
       </div>
 
-      {/* Logo placeholder */}
-      <div className="w-12 h-12 bg-[hsl(var(--background))] rounded-lg flex items-center justify-center mb-4 text-2xl">
-        {logoUrl ? (
-          <img src={logoUrl} alt={name} className="w-full h-full object-cover rounded-lg" />
-        ) : (
-          name.charAt(0)
-        )}
-      </div>
-
-      {/* Content */}
-      <h3 className="text-lg font-semibold mb-2 group-hover:text-[hsl(var(--primary))] transition-colors">
-        {name}
-      </h3>
-      <p className="text-sm text-[hsl(var(--foreground))]/70 mb-4 line-clamp-2">
+      {/* Description */}
+      <p className="text-sm text-[hsl(var(--foreground))]/70 line-clamp-2 mb-4">
         {description}
       </p>
 
-      {/* Meta */}
-      <div className="flex items-center justify-between text-sm">
-        <span className="px-2 py-1 bg-[hsl(var(--background))] rounded text-[hsl(var(--foreground))]/60 capitalize">
+      {/* Footer */}
+      <div className="flex items-center justify-between pt-3 border-t border-[hsl(var(--border))]">
+        <span className="text-xs px-2 py-1 bg-[hsl(var(--background))] rounded-md capitalize text-[hsl(var(--foreground))]/60">
           {category}
         </span>
-        <span className="text-[hsl(var(--primary))]">{pricing}</span>
+        <span className={`text-sm font-medium ${pricing === "Free" ? "text-[hsl(var(--accent))]" : "text-[hsl(var(--foreground))]"}`}>
+          {pricing}
+        </span>
       </div>
-
-      {/* External link icon */}
-      <ExternalLink className="absolute top-4 right-4 w-4 h-4 text-[hsl(var(--foreground))]/30 opacity-0 group-hover:opacity-100 transition-opacity" />
     </div>
   );
-
-  if (url) {
-    return (
-      <a href={url} target="_blank" rel="noopener noreferrer">
-        {content}
-      </a>
-    );
-  }
-
-  return content;
 }

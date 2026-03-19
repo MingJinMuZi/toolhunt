@@ -1,0 +1,15 @@
+# robots.txt for ToolHunt
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://toolhunt.ai/sitemap.xml
+
+# Disallow admin/private paths
+Disallow: /api/
+Disallow: /_next/
+Disallow: /admin/
+
+# Crawl delay (optional, be nice to servers)
+Crawl-delay: 1
