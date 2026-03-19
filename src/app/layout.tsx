@@ -8,9 +8,53 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "SoloAI Tools - AI Tools for Solopreneurs & Indie Makers",
-  description: "Curated AI tools directory for indie hackers and solopreneurs. Find the best AI agents, coding assistants, marketing tools, and more.",
-  keywords: "AI tools, indie hackers, solopreneurs, AI agents, coding assistants, marketing tools",
+  title: {
+    default: "ToolHunt - 发现最佳AI工具 | AI工具导航站",
+    template: "%s | ToolHunt"
+  },
+  description: "发现和比较200+最佳AI工具。涵盖AI助手、编程、写作、设计等领域。每日更新，精选推荐。帮你找到最适合的AI工具。",
+  keywords: "AI工具, AI导航, ChatGPT替代, AI软件, 人工智能工具, AI工具推荐, AI工具大全, 最佳AI工具",
+  authors: [{ name: "ToolHunt Team" }],
+  creator: "ToolHunt",
+  publisher: "ToolHunt",
+  metadataBase: new URL("https://toolhunt.ai"),
+  openGraph: {
+    type: "website",
+    locale: "zh_CN",
+    url: "https://toolhunt.ai",
+    siteName: "ToolHunt",
+    title: "ToolHunt - 发现最佳AI工具",
+    description: "发现和比较200+最佳AI工具。涵盖AI助手、编程、写作、设计等领域。",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "ToolHunt - AI工具导航站"
+      }
+    ]
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ToolHunt - 发现最佳AI工具",
+    description: "发现和比较200+最佳AI工具",
+    images: ["/og.png"],
+    creator: "@toolhunt"
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1
+    }
+  },
+  alternates: {
+    canonical: "https://toolhunt.ai"
+  }
 };
 
 export default function RootLayout({
@@ -19,7 +63,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="zh-CN" className="dark">
+      <head>
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="canonical" href="https://toolhunt.ai" />
+      </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}
       </body>
