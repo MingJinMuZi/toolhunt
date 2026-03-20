@@ -107,7 +107,7 @@ export default function Home() {
           </div>
           <div>
             <h2 className="text-2xl font-bold">{t('home.hero.featured')}</h2>
-            <p className="text-[hsl(var(--muted-foreground))]">Editor's Picks</p>
+            <p className="text-[hsl(var(--muted-foreground))]">{t('home.editorPicks')}</p>
           </div>
         </div>
         

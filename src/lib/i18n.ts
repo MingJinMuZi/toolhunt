@@ -23,6 +23,7 @@ export const translations: Record<Locale, Record<string, string>> = {
     'home.hero.indieMade': '独立开发',
     'home.hero.featured': '精选推荐',
     'home.hero.free': '完全免费',
+    'home.editorPicks': '编辑精选',
     
     // 分类
     'categories.title': '按分类浏览',
