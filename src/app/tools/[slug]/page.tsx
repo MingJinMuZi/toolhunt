@@ -4,6 +4,9 @@ import { Button } from "@/components/ui/button";
 import { tools } from "@/data/tools";
 import { categories } from "@/data/categories";
 import { ToolCard } from "@/components/tool-card";
+import { Rating } from "@/components/rating";
+import { FavoriteButton } from "@/components/favorites";
+import { Screenshots } from "@/components/screenshots";
 import { generateToolSchema, generateBreadcrumbSchema } from "@/lib/seo";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -101,6 +104,9 @@ export default async function ToolDetailPage({ params }: { params: Promise<{ slu
               <Link href="/tools" className="text-sm hover:text-[hsl(var(--primary))]">
                 所有工具
               </Link>
+              <Link href="/favorites" className="text-sm hover:text-[hsl(var(--primary))]">
+                我的收藏
+              </Link>
               <Link href="/submit" className="text-sm hover:text-[hsl(var(--primary))]">
                 提交工具
               </Link>
@@ -171,6 +177,15 @@ export default async function ToolDetailPage({ params }: { params: Promise<{ slu
               <h1 className="text-4xl font-bold mb-4">{tool.name}</h1>
               <p className="text-lg text-[hsl(var(--foreground))]/70 mb-6">{tool.description}</p>
 
+              {/* Screenshots */}
+              <div className="mb-8">
+                <Screenshots 
+                  toolName={tool.name}
+                  toolUrl={tool.url}
+                  screenshots={[]} // 后续可从数据中获取
+                />
+              </div>
+
               {/* Category & Tags */}
               <div className="flex flex-wrap items-center gap-3 mb-8">
                 <Link href={`/categories/${tool.category}`}>
@@ -185,6 +200,12 @@ export default async function ToolDetailPage({ params }: { params: Promise<{ slu
                     </span>
                   </Link>
                 ))}
+              </div>
+
+              {/* Rating */}
+              <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-xl p-6 mb-8">
+                <h2 className="text-lg font-semibold mb-4">用户评价</h2>
+                <Rating toolId={tool.id} toolName={tool.name} />
               </div>
 
               {/* Pricing Info */}
@@ -220,9 +241,7 @@ export default async function ToolDetailPage({ params }: { params: Promise<{ slu
                       <ExternalLink className="w-4 h-4" />
                     </Button>
                   </a>
-                  <p className="text-xs text-[hsl(var(--foreground))]/50 text-center">
-                    在新标签页打开
-                  </p>
+                  <FavoriteButton toolId={tool.id} toolName={tool.name} toolSlug={tool.slug} />
                 </div>
 
                 {/* Quick Info */}
