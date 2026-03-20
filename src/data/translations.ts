@@ -173,6 +173,125 @@ export const toolTranslations: Record<string, Record<Locale, ToolTranslation>> =
   "duolingo": { zh: { shortDesc: "AI语言学习", description: "AI语言学习应用，个性化学习路径。" }, en: {} },
   "quizlet-ai": { zh: { shortDesc: "AI学习工具", description: "AI学习工具，智能闪卡和测试。" }, en: {} },
   "gradescope": { zh: { shortDesc: "AI评分工具", description: "AI评分平台，自动评分和反馈。" }, en: {} },
+
+  // ==================== 更多创意工具 ====================
+  "dall-e-3": { zh: { shortDesc: "OpenAI图像生成", description: "OpenAI最新图像生成模型，ChatGPT集成，精准文字渲染。" }, en: {} },
+  "canva-ai": { zh: { shortDesc: "Canva AI设计", description: "Canva内置AI设计工具，智能生成设计和图像。" }, en: {} },
+  "flux": { zh: { shortDesc: "AI图像生成", description: "开源AI图像生成模型，高质量图像生成。" }, en: {} },
+  "topaz-labs": { zh: { shortDesc: "AI图像增强", description: "AI图像增强工具，放大、降噪、锐化。" }, en: {} },
+  "magnific-ai": { zh: { shortDesc: "AI图像放大", description: "AI图像放大工具，提升图像分辨率和细节。" }, en: {} },
+  "photoai": { zh: { shortDesc: "AI照片生成", description: "AI照片生成平台，创建专业人像和产品图。" }, en: {} },
+  "clipdrop": { zh: { shortDesc: "AI图像工具", description: "AI图像处理工具套件，抠图、移除、增强。" }, en: {} },
+  "krea-ai": { zh: { shortDesc: "AI图像生成", description: "AI图像生成工具，实时生成和编辑。" }, en: {} },
+  "khroma": { zh: { shortDesc: "AI配色工具", description: "AI配色方案生成器，发现个性化配色。" }, en: {} },
+
+  // ==================== 更多写作工具 ====================
+  "jenni-ai": { zh: { shortDesc: "AI学术写作", description: "AI学术写作助手，论文写作和研究辅助。" }, en: {} },
+  "lex": { zh: { shortDesc: "AI写作工具", description: "AI写作编辑器，专注模式下的智能写作。" }, en: {} },
+  "novelcrafter": { zh: { shortDesc: "AI小说写作", description: "AI小说创作平台，长篇故事创作工具。" }, en: {} },
+  "hemingway-editor": { zh: { shortDesc: "写作风格编辑", description: "写作风格优化工具，提升文章可读性。" }, en: {} },
+  "prowritingaid": { zh: { shortDesc: "AI写作助手", description: "AI写作分析和改进工具，提升写作质量。" }, en: {} },
+  "copysmith": { zh: { shortDesc: "AI营销文案", description: "AI营销文案生成器，电商和企业内容。" }, en: {} },
+  "writer-com": { zh: { shortDesc: "企业AI写作", description: "企业AI写作平台，品牌一致的内容生成。" }, en: {} },
+  "lavender": { zh: { shortDesc: "AI邮件助手", description: "AI邮件写作助手，优化邮件提高回复率。" }, en: {} },
+  "compose-ai": { zh: { shortDesc: "AI文本补全", description: "AI文本补全工具，加速写作速度。" }, en: {} },
+
+  // ==================== 更多视频工具 ====================
+  "capcut": { zh: { shortDesc: "AI视频编辑", description: "字节跳动视频编辑工具，AI特效和剪辑。" }, en: {} },
+  "opus-clip": { zh: { shortDesc: "AI短视频生成", description: "AI长视频转短视频，自动识别精彩片段。" }, en: {} },
+  "veed-io": { zh: { shortDesc: "在线视频编辑", description: "在线视频编辑平台，AI字幕和特效。" }, en: {} },
+  "invideo-ai": { zh: { shortDesc: "AI视频生成", description: "AI视频生成平台，文字转视频。" }, en: {} },
+  "kapwing": { zh: { shortDesc: "AI视频编辑", description: "在线视频编辑器，AI驱动的编辑工具。" }, en: {} },
+  "synthesia-video": { zh: { shortDesc: "AI虚拟人视频", description: "AI虚拟人视频生成，多语言配音。" }, en: {} },
+  "reface": { zh: { shortDesc: "AI换脸工具", description: "AI换脸应用，照片和视频换脸。" }, en: {} },
+  "descript-video": { zh: { shortDesc: "AI视频编辑", description: "AI视频编辑器，像编辑文档一样编辑视频。" }, en: {} },
+  "fliki": { zh: { shortDesc: "AI视频生成", description: "文字转视频工具，AI配音和图像生成。" }, en: {} },
+  "steve-ai": { zh: { shortDesc: "AI动画视频", description: "AI动画视频生成器，快速创建动画内容。" }, en: {} },
+  "wisecut": { zh: { shortDesc: "AI视频剪辑", description: "AI自动视频剪辑工具，智能剪切和字幕。" }, en: {} },
+  "vizard-ai": { zh: { shortDesc: "AI视频剪辑", description: "AI视频剪辑平台，自动生成短视频。" }, en: {} },
+
+  // ==================== 更多音频工具 ====================
+  "murf-ai": { zh: { shortDesc: "AI配音工具", description: "AI配音生成平台，多种语言和声音风格。" }, en: {} },
+  "suno-ai": { zh: { shortDesc: "AI音乐生成", description: "AI歌曲生成工具，文字描述生成完整歌曲。" }, en: {} },
+  "soundraw": { zh: { shortDesc: "AI音乐生成", description: "AI背景音乐生成器，免版税音乐。" }, en: {} },
+  "mubert": { zh: { shortDesc: "AI音乐流媒体", description: "AI音乐生成平台，流媒体和创作工具。" }, en: {} },
+  "boomy": { zh: { shortDesc: "AI音乐创作", description: "AI音乐创作工具，快速生成原创音乐。" }, en: {} },
+  "play-ht": { zh: { shortDesc: "AI文本转语音", description: "AI文本转语音平台，高质量多语言语音。" }, en: {} },
+  "descript-audio": { zh: { shortDesc: "AI音频编辑", description: "AI音频转录和编辑工具，像编辑文档一样编辑音频。" }, en: {} },
+  "cleanvoice-ai": { zh: { shortDesc: "AI音频清理", description: "AI音频清理工具，去除噪音和填充词。" }, en: {} },
+  "adobe-podcast": { zh: { shortDesc: "AI播客工具", description: "Adobe AI播客增强工具，提升录音质量。" }, en: {} },
+  "auphonic": { zh: { shortDesc: "AI音频处理", description: "AI音频后期处理，自动音量平衡和降噪。" }, en: {} },
+
+  // ==================== 更多效率工具 ====================
+  "linear": { zh: { shortDesc: "AI项目管理", description: "AI项目管理工具，软件开发团队协作。" }, en: {} },
+  "raycast-ai": { zh: { shortDesc: "AI启动器", description: "Mac启动器AI扩展，快速访问AI功能。" }, en: {} },
+  "readwise-reader": { zh: { shortDesc: "AI阅读工具", description: "AI阅读和知识管理，保存和高亮文章。" }, en: {} },
+  "gamma": { zh: { shortDesc: "AI演示文稿", description: "AI演示文稿生成器，快速创建专业PPT。" }, en: {} },
+  "tome": { zh: { shortDesc: "AI演示工具", description: "AI演示文稿平台，智能布局和内容生成。" }, en: {} },
+  "beautiful-ai": { zh: { shortDesc: "AI PPT生成", description: "AI演示文稿工具，智能模板和设计。" }, en: {} },
+  "tana": { zh: { shortDesc: "AI笔记工具", description: "AI笔记应用，大纲和知识管理。" }, en: {} },
+  "reflect": { zh: { shortDesc: "AI笔记应用", description: "AI笔记工具，反向链接和知识图谱。" }, en: {} },
+  "capacities": { zh: { shortDesc: "AI知识管理", description: "AI知识管理工具，对象化笔记系统。" }, en: {} },
+  "reclaim-ai": { zh: { shortDesc: "AI日程安排", description: "AI日程管理工具，智能安排会议和任务。" }, en: {} },
+  "clockwise": { zh: { shortDesc: "AI时间管理", description: "AI时间优化工具，保护专注时间。" }, en: {} },
+  "skedpal": { zh: { shortDesc: "AI日程规划", description: "AI日程规划工具，自动安排任务时间。" }, en: {} },
+  "krisp": { zh: { shortDesc: "AI降噪工具", description: "AI通话降噪工具，消除背景噪音。" }, en: {} },
+  "fireflies": { zh: { shortDesc: "AI会议记录", description: "AI会议转录工具，自动记录和总结会议。" }, en: {} },
+
+  // ==================== 更多自动化工具 ====================
+  "retool": { zh: { shortDesc: "低代码平台", description: "低代码内部工具平台，快速构建管理后台。" }, en: {} },
+  "pipedream": { zh: { shortDesc: "集成平台", description: "API集成平台，连接应用和工作流自动化。" }, en: {} },
+  "relay-app": { zh: { shortDesc: "工作流自动化", description: "工作流自动化平台，人性化自动化流程。" }, en: {} },
+  "tally": { zh: { shortDesc: "AI表单工具", description: "免费表单构建工具，无需代码创建表单。" }, en: {} },
+  "instantly": { zh: { shortDesc: "AI邮件自动化", description: "冷邮件自动化平台，大规模邮件外联。" }, en: {} },
+  "activepieces": { zh: { shortDesc: "开源自动化", description: "开源工作流自动化工具，易用的自动化平台。" }, en: {} },
+  "trigger-dev": { zh: { shortDesc: "后台任务平台", description: "开发者后台任务平台，构建可靠后台作业。" }, en: {} },
+  "lindy": { zh: { shortDesc: "AI助理自动化", description: "AI助理平台，自动化日常工作任务。" }, en: {} },
+  "magic": { zh: { shortDesc: "AI自动化助手", description: "AI工作自动化工具，自动化重复任务。" }, en: {} },
+
+  // ==================== 更多研究工具 ====================
+  "elicit": { zh: { shortDesc: "AI研究助手", description: "AI研究助手，自动化文献综述。" }, en: {} },
+  "consensus": { zh: { shortDesc: "AI学术搜索", description: "AI学术文献搜索引擎，快速找到研究答案。" }, en: {} },
+  "scite": { zh: { shortDesc: "智能引用分析", description: "智能引用分析平台，查看论文引用上下文。" }, en: {} },
+  "scholarcy": { zh: { shortDesc: "AI论文总结", description: "AI论文摘要工具，快速了解论文要点。" }, en: {} },
+  "connected-papers": { zh: { shortDesc: "论文关联图", description: "论文关联可视化工具，发现相关研究。" }, en: {} },
+  "explainpaper": { zh: { shortDesc: "AI论文解释", description: "AI论文解释工具，帮助理解复杂论文。" }, en: {} },
+
+  // ==================== 更多教育工具 ====================
+  "duolingo-max": { zh: { shortDesc: "AI语言学习", description: "Duolingo AI高级版，GPT-4驱动的学习体验。" }, en: {} },
+  "khanmigo": { zh: { shortDesc: "Khan AI导师", description: "Khan Academy AI导师，个性化学习辅导。" }, en: {} },
+  "quizlet-q-chat": { zh: { shortDesc: "AI学习聊天", description: "Quizlet AI学习助手，对话式学习体验。" }, en: {} },
+  "turnitin": { zh: { shortDesc: "AI抄袭检测", description: "学术抄袭检测工具，AI写作检测。" }, en: {} },
+  "curipod": { zh: { shortDesc: "AI课堂工具", description: "AI课堂互动工具，创建互动课程。" }, en: {} },
+  "formative": { zh: { shortDesc: "AI形成性评价", description: "AI形成性评价平台，实时学生反馈。" }, en: {} },
+  "magicschool-ai": { zh: { shortDesc: "教师AI助手", description: "教师AI工具平台，备课和评分辅助。" }, en: {} },
+
+  // ==================== 更多销售工具 ====================
+  "chorus-ai": { zh: { shortDesc: "AI销售对话分析", description: "AI销售对话智能平台，通话分析和辅导。" }, en: {} },
+  "apollo-io": { zh: { shortDesc: "AI销售智能", description: "AI销售智能平台，线索发现和外联自动化。" }, en: {} },
+  "salesforce-einstein": { zh: { shortDesc: "Salesforce AI", description: "Salesforce AI助手，智能CRM功能。" }, en: {} },
+  "alyce": { zh: { shortDesc: "AI礼品营销", description: "AI企业礼品平台，个性化客户送礼。" }, en: {} },
+  "amplitude-ai": { zh: { shortDesc: "AI产品分析", description: "AI产品分析平台，用户行为洞察。" }, en: {} },
+
+  // ==================== 更多客服工具 ====================
+  "dante-ai": { zh: { shortDesc: "AI客服机器人", description: "AI客服聊天机器人，自定义训练。" }, en: {} },
+  "chatbase": { zh: { shortDesc: "AI聊天机器人", description: "AI聊天机器人平台，用数据训练定制机器人。" }, en: {} },
+  "botsonic": { zh: { shortDesc: "AI聊天机器人", description: "Writesonic聊天机器人，AI客服解决方案。" }, en: {} },
+  "customgpt": { zh: { shortDesc: "企业AI机器人", description: "企业定制AI聊天机器人，品牌专属。" }, en: {} },
+  "voiceflow": { zh: { shortDesc: "AI对话设计", description: "AI对话设计平台，构建语音和聊天助手。" }, en: {} },
+  "front": { zh: { shortDesc: "AI客服平台", description: "客户沟通平台，统一收件箱和AI辅助。" }, en: {} },
+
+  // ==================== 更多设计工具 ====================
+  "figma-ai": { zh: { shortDesc: "Figma AI设计", description: "Figma内置AI功能，智能设计建议。" }, en: {} },
+  "framer-ai": { zh: { shortDesc: "AI网站构建", description: "AI网站构建平台，设计即代码。" }, en: {} },
+  "uizard": { zh: { shortDesc: "AI UI设计", description: "AI UI设计工具，线框图转高保真设计。" }, en: {} },
+  "designs-ai": { zh: { shortDesc: "AI设计套件", description: "AI设计工具套件，Logo、设计、视频。" }, en: {} },
+  "brandmark": { zh: { shortDesc: "AI Logo设计", description: "AI Logo生成器，创建品牌标识。" }, en: {} },
+  "namelix": { zh: { shortDesc: "AI品牌命名", description: "AI品牌命名工具，生成公司名称。" }, en: {} },
+
+  // ==================== 更多营销工具 ====================
+  "predis-ai": { zh: { shortDesc: "AI社媒营销", description: "AI社交媒体内容生成，图片和视频创作。" }, en: {} },
+  "ocoya": { zh: { shortDesc: "AI社媒管理", description: "AI社交媒体管理平台，内容创作和排程。" }, en: {} },
 };
 
 // 获取工具翻译
