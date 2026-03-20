@@ -1,50 +1,34 @@
-import { Metadata } from "next";
-import Link from "next/link";
-import { Sparkles, Search, Home, ArrowLeft } from "lucide-react";
-import { Button } from "@/components/ui/button";
+"use client";
 
-export const metadata: Metadata = {
-  title: "页面未找到",
-  description: "您访问的页面不存在",
-};
+import { useEffect } from "react";
+import Link from "next/link";
+import { Sparkles } from "lucide-react";
 
 export default function NotFound() {
   return (
-    <main className="min-h-screen flex flex-col">
-      {/* Header */}
-      <header className="border-b border-[hsl(var(--border))]">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Sparkles className="w-6 h-6 text-[hsl(var(--primary))]" />
-            <span className="text-xl font-bold">ToolHunt</span>
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="text-center max-w-md px-4">
+        <div className="w-20 h-20 bg-[hsl(var(--primary))]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+          <Sparkles className="w-10 h-10 text-[hsl(var(--primary))]" />
+        </div>
+        <h1 className="text-6xl font-bold mb-4">404</h1>
+        <h2 className="text-xl font-medium mb-2">页面未找到</h2>
+        <p className="text-[hsl(var(--foreground))]/60 mb-6">
+          抱歉，您访问的页面不存在或已被移除。
+        </p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link href="/">
+            <button className="px-6 py-3 bg-[hsl(var(--primary))] text-white rounded-lg hover:opacity-90 transition-opacity">
+              返回首页
+            </button>
+          </Link>
+          <Link href="/tools">
+            <button className="px-6 py-3 bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-lg hover:border-[hsl(var(--primary))]/50 transition-colors">
+              浏览所有工具
+            </button>
           </Link>
         </div>
-      </header>
-
-      {/* 404 Content */}
-      <div className="flex-1 flex items-center justify-center">
-        <div className="text-center px-4">
-          <div className="text-8xl font-bold text-[hsl(var(--primary))]/20 mb-4">404</div>
-          <h1 className="text-3xl font-bold mb-4">页面未找到</h1>
-          <p className="text-[hsl(var(--foreground))]/60 mb-8 max-w-md mx-auto">
-            抱歉，您访问的页面不存在或已被移除。请检查URL是否正确，或返回首页继续浏览。
-          </p>
-          <div className="flex items-center justify-center gap-4">
-            <Link href="/">
-              <Button variant="outline" className="gap-2">
-                <ArrowLeft className="w-4 h-4" />
-                返回首页
-              </Button>
-            </Link>
-            <Link href="/tools">
-              <Button className="gap-2">
-                <Search className="w-4 h-4" />
-                浏览工具
-              </Button>
-            </Link>
-          </div>
-        </div>
       </div>
-    </main>
+    </div>
   );
 }
