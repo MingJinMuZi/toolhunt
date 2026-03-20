@@ -1,112 +1,132 @@
-import { Search, Sparkles, Verified, Heart, ArrowRight, Zap } from "lucide-react";
+import { Search, Sparkles, Verified, Heart, ArrowRight, Zap, TrendingUp, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ToolCard } from "@/components/tool-card";
-import { CategoryTabs } from "@/components/category-tabs";
 import { tools, categories } from "@/data/tools";
 import Link from "next/link";
 
 export const metadata = {
-  title: "ToolHunt - AI Tools for Indie Hackers",
-  description: "Curated AI tools for indie developers, solopreneurs, and makers. Find the best tools for coding, marketing, design, and productivity.",
+  title: "ToolHunt - 发现最佳AI工具 | AI工具导航站",
+  description: "精心策划的AI工具合集，专为独立开发者、创业者和创作者打造。",
 };
 
 export default function Home() {
-  // Get featured tools
   const featuredTools = tools.filter(t => t.isFeatured).slice(0, 6);
-  
-  // Get recent tools (last added)
-  const recentTools = tools.slice(0, 6);
 
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen relative">
+      {/* 背景装饰 */}
+      <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[hsl(var(--primary))] opacity-5 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[hsl(var(--accent))] opacity-5 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-grid opacity-30" />
+      </div>
+
       {/* Header */}
-      <header className="border-b border-[hsl(var(--border))]">
+      <header className="sticky top-0 z-50 border-b border-[hsl(var(--border))] glass-strong">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2">
-            <Sparkles className="w-6 h-6 text-[hsl(var(--primary))]" />
+          <Link href="/" className="flex items-center gap-2 group">
+            <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+              <Sparkles className="w-5 h-5 text-white" />
+            </div>
             <span className="text-xl font-bold">ToolHunt</span>
           </Link>
-          <nav className="flex items-center gap-6">
-            <Link href="/tools" className="text-sm text-[hsl(var(--foreground))] hover:text-[hsl(var(--primary))] transition-colors">
-              All Tools
-            </Link>
-            <Link href="/submit" className="text-sm text-[hsl(var(--foreground))] hover:text-[hsl(var(--primary))] transition-colors">
-              Submit Tool
-            </Link>
-            <Link href="/about" className="text-sm text-[hsl(var(--foreground))] hover:text-[hsl(var(--primary))] transition-colors">
-              About
-            </Link>
+          
+          <nav className="hidden md:flex items-center gap-8">
+            <Link href="/tools" className="text-sm text-[hsl(var(--foreground))]/70 hover:text-[hsl(var(--primary))] transition-colors">所有工具</Link>
+            <Link href="/favorites" className="text-sm text-[hsl(var(--foreground))]/70 hover:text-[hsl(var(--primary))] transition-colors">我的收藏</Link>
+            <Link href="/submit" className="text-sm text-[hsl(var(--foreground))]/70 hover:text-[hsl(var(--primary))] transition-colors">提交工具</Link>
           </nav>
+
+          <Link href="/submit" className="hidden sm:block">
+            <Button className="gap-2 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] hover:opacity-90">
+              <Zap className="w-4 h-4" />
+              提交工具
+            </Button>
+          </Link>
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="container mx-auto px-4 py-20 text-center">
-        <div className="inline-flex items-center gap-2 px-4 py-2 bg-[hsl(var(--primary))]/10 rounded-full text-sm text-[hsl(var(--primary))] mb-6">
-          <Zap className="w-4 h-4" />
-          <span>Curated for Indie Hackers</span>
+      {/* Hero */}
+      <section className="container mx-auto px-4 py-16 md:py-24 text-center">
+        <div className="inline-flex items-center gap-2 px-4 py-2 bg-[hsl(var(--primary))]/10 border border-[hsl(var(--primary))]/20 rounded-full text-sm text-[hsl(var(--primary))] mb-8 animate-fade-in">
+          <TrendingUp className="w-4 h-4" />
+          <span>{tools.length}+ 精选AI工具</span>
         </div>
         
-        <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight">
-          Discover the Best{" "}
-          <span className="text-[hsl(var(--primary))]">AI Tools</span>
-          <br />
-          for Your Projects
+        <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in">
+          发现最佳 <span className="text-gradient">AI工具</span>
+          <br /><span className="text-[hsl(var(--foreground))]/70">助力你的项目</span>
         </h1>
         
-        <p className="text-lg text-[hsl(var(--foreground))]/70 mb-8 max-w-2xl mx-auto">
-          Hand-picked AI tools for indie developers, solopreneurs, and makers.
-          Find affordable solutions to build, market, and grow your business.
+        <p className="text-lg text-[hsl(var(--foreground))]/60 mb-10 max-w-2xl mx-auto animate-fade-in">
+          精心策划的AI工具合集，专为独立开发者、创业者和创作者打造
         </p>
 
-        {/* Search Bar */}
-        <div className="max-w-2xl mx-auto mb-12">
+        {/* 搜索框 */}
+        <div className="max-w-2xl mx-auto mb-12 animate-fade-in">
           <Link href="/tools">
             <div className="relative group">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[hsl(var(--foreground))]/50" />
-              <div className="w-full pl-12 pr-4 py-4 bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-xl text-left text-[hsl(var(--foreground))]/50 group-hover:border-[hsl(var(--primary))]/50 transition-colors cursor-pointer">
-                Search {tools.length} AI tools...
+              <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[hsl(var(--muted-foreground))] group-hover:text-[hsl(var(--primary))] transition-colors" />
+              <div className="w-full pl-14 py-5 bg-[hsl(var(--card))] border-2 border-[hsl(var(--border))] rounded-2xl text-left text-[hsl(var(--muted-foreground))] group-hover:border-[hsl(var(--primary))]/50 transition-all cursor-pointer shadow-lg">
+                搜索 {tools.length} 个AI工具...
               </div>
-              <ArrowRight className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[hsl(var(--foreground))]/50 group-hover:text-[hsl(var(--primary))] transition-colors" />
+              <div className="absolute right-5 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-[hsl(var(--primary))] text-white text-xs rounded-lg">
+                <ArrowRight className="w-4 h-4" />
+              </div>
             </div>
           </Link>
         </div>
 
-        {/* Quick Stats */}
-        <div className="flex justify-center flex-wrap gap-6 text-sm text-[hsl(var(--foreground))]/60">
-          <div className="flex items-center gap-2">
-            <Verified className="w-4 h-4 text-[hsl(var(--accent))]" />
-            <span>{tools.filter(t => t.isVerified).length} Verified Tools</span>
+        {/* 统计 */}
+        <div className="flex flex-wrap justify-center gap-8 mb-16 animate-fade-in">
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-2 mb-1">
+              <Verified className="w-5 h-5 text-[hsl(var(--accent))]" />
+              <span className="text-3xl font-bold">{tools.filter(t => t.isVerified).length}</span>
+            </div>
+            <span className="text-sm text-[hsl(var(--muted-foreground))]">已验证</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Heart className="w-4 h-4 text-[hsl(var(--featured))]" />
-            <span>{tools.filter(t => t.indieMade).length} Indie Made</span>
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-2 mb-1">
+              <Heart className="w-5 h-5 text-[hsl(var(--featured))]" />
+              <span className="text-3xl font-bold">{tools.filter(t => t.indieMade).length}</span>
+            </div>
+            <span className="text-sm text-[hsl(var(--muted-foreground))]">独立开发</span>
           </div>
-          <div className="flex items-center gap-2">
-            <Sparkles className="w-4 h-4 text-[hsl(var(--primary))]" />
-            <span>{tools.filter(t => t.pricingModel === "free" || t.pricingModel === "freemium").length} Free Options</span>
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-2 mb-1">
+              <Star className="w-5 h-5 text-[hsl(var(--primary))]" />
+              <span className="text-3xl font-bold">{tools.filter(t => t.isFeatured).length}</span>
+            </div>
+            <span className="text-sm text-[hsl(var(--muted-foreground))]">精选推荐</span>
           </div>
+          <div className="text-center">
+            <div className="flex items-center justify-center gap-2 mb-1">
+              <Sparkles className="w-5 h-5 text-green-500" />
+              <span className="text-3xl font-bold">{tools.filter(t => t.pricingModel === "free").length}</span>
+            </div>
+            <span className="text-sm text-[hsl(var(--muted-foreground))]">完全免费</span>
+          </div>
+        </div>
+
+        {/* 快速筛选 */}
+        <div className="flex flex-wrap justify-center gap-3 animate-fade-in">
+          <Link href="/pricing/free" className="px-4 py-2 bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-full text-sm hover:border-green-500/50 hover:text-green-500 transition-all">🆓 免费工具</Link>
+          <Link href="/tags/open-source" className="px-4 py-2 bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-full text-sm hover:border-[hsl(var(--primary))]/50 hover:text-[hsl(var(--primary))] transition-all">📖 开源项目</Link>
+          <Link href="/tags/no-code" className="px-4 py-2 bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-full text-sm hover:border-[hsl(var(--featured))]/50 hover:text-[hsl(var(--featured))] transition-all">🎯 无代码</Link>
         </div>
       </section>
 
-      {/* Featured Tools */}
-      <section className="container mx-auto px-4 py-12">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h2 className="text-2xl font-bold flex items-center gap-2">
-              <Sparkles className="w-6 h-6 text-[hsl(var(--featured))]" />
-              Featured Tools
-            </h2>
-            <p className="text-sm text-[hsl(var(--foreground))]/60 mt-1">
-              Top picks for indie hackers
-            </p>
+      {/* Featured */}
+      <section className="container mx-auto px-4 py-16">
+        <div className="flex items-center gap-3 mb-8">
+          <div className="w-10 h-10 bg-[hsl(var(--featured))]/20 rounded-xl flex items-center justify-center">
+            <Star className="w-5 h-5 text-[hsl(var(--featured))]" />
           </div>
-          <Link href="/tools">
-            <Button variant="outline">
-              View All
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </Link>
+          <div>
+            <h2 className="text-2xl font-bold">精选推荐</h2>
+            <p className="text-[hsl(var(--muted-foreground))]">编辑精心挑选</p>
+          </div>
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -116,11 +136,7 @@ export default function Home() {
                 name={tool.name}
                 description={tool.shortDesc}
                 category={tool.category}
-                pricing={
-                  tool.pricingModel === "free"
-                    ? "Free"
-                    : `$${tool.monthlyCostMin}${tool.monthlyCostMax > tool.monthlyCostMin ? `-$${tool.monthlyCostMax}` : ""}/mo`
-                }
+                pricing={tool.pricingModel === "free" ? "免费" : `$${tool.monthlyCostMin}/月`}
                 verified={tool.isVerified}
                 indieMade={tool.indieMade}
                 featured={tool.isFeatured}
@@ -131,19 +147,23 @@ export default function Home() {
       </section>
 
       {/* Categories */}
-      <section className="container mx-auto px-4 py-12">
-        <h2 className="text-2xl font-bold mb-6">Browse by Category</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {categories.slice(1).map((category) => {
-            const count = category.id === "all" 
-              ? tools.length 
-              : tools.filter(t => t.category === category.id).length;
+      <section className="container mx-auto px-4 py-16">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold mb-3">按分类浏览</h2>
+          <p className="text-[hsl(var(--muted-foreground))]">选择你感兴趣的领域</p>
+        </div>
+        
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+          {categories.slice(1, 13).map((category) => {
+            const count = tools.filter(t => t.category === category.id).length;
             return (
-              <Link key={category.id} href={`/tools?category=${category.id}`}>
-                <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-xl p-4 text-center hover:border-[hsl(var(--primary))]/50 transition-all hover:scale-105 cursor-pointer">
-                  <span className="text-3xl">{category.icon}</span>
-                  <p className="font-medium mt-2">{category.label}</p>
-                  <p className="text-xs text-[hsl(var(--foreground))]/50">{count} tools</p>
+              <Link key={category.id} href={`/tools?category=${category.id}`} className="group">
+                <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-2xl p-6 text-center hover:border-[hsl(var(--primary))]/50 transition-all hover:-translate-y-1 hover:shadow-xl">
+                  <div className="w-14 h-14 mx-auto mb-3 bg-[hsl(var(--primary))]/10 rounded-xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                    {category.icon}
+                  </div>
+                  <p className="font-medium mb-1">{category.label}</p>
+                  <p className="text-xs text-[hsl(var(--muted-foreground))]">{count} 工具</p>
                 </div>
               </Link>
             );
@@ -151,74 +171,52 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Recent Tools */}
-      <section className="container mx-auto px-4 py-12">
-        <div className="flex items-center justify-between mb-8">
-          <div>
-            <h2 className="text-2xl font-bold">Latest Tools</h2>
-            <p className="text-sm text-[hsl(var(--foreground))]/60 mt-1">
-              Recently added to our collection
-            </p>
-          </div>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {recentTools.slice(0, 3).map((tool) => (
-            <Link key={tool.id} href={`/tools/${tool.slug}`}>
-              <ToolCard
-                name={tool.name}
-                description={tool.shortDesc}
-                category={tool.category}
-                pricing={
-                  tool.pricingModel === "free"
-                    ? "Free"
-                    : `$${tool.monthlyCostMin}${tool.monthlyCostMax > tool.monthlyCostMin ? `-$${tool.monthlyCostMax}` : ""}/mo`
-                }
-                verified={tool.isVerified}
-                indieMade={tool.indieMade}
-              />
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* CTA Section */}
+      {/* CTA */}
       <section className="container mx-auto px-4 py-16">
-        <div className="bg-gradient-to-r from-[hsl(var(--primary))]/20 to-[hsl(var(--accent))]/20 border border-[hsl(var(--border))] rounded-2xl p-8 md:p-12 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
-            Have a Tool to Share?
-          </h2>
-          <p className="text-[hsl(var(--foreground))]/70 mb-6 max-w-xl mx-auto">
-            Submit your AI tool and reach thousands of indie makers looking for solutions like yours.
-          </p>
+        <div className="relative overflow-hidden bg-gradient-to-br from-[hsl(var(--primary))]/20 via-[hsl(var(--card))] to-[hsl(var(--accent))]/20 border border-[hsl(var(--border))] rounded-3xl p-8 md:p-16 text-center">
+          <div className="w-16 h-16 mx-auto mb-6 bg-[hsl(var(--primary))] rounded-2xl flex items-center justify-center">
+            <Zap className="w-8 h-8 text-white" />
+          </div>
+          <h2 className="text-2xl md:text-4xl font-bold mb-4">有好用的AI工具？</h2>
+          <p className="text-[hsl(var(--muted-foreground))] mb-8 max-w-xl mx-auto">提交你的工具，让数以万计的独立开发者发现你的产品</p>
           <Link href="/submit">
-            <Button size="lg" className="gap-2">
-              Submit Your Tool
-              <ArrowRight className="w-4 h-4" />
-            </Button>
+            <Button size="lg" className="gap-2 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))]">提交工具 <ArrowRight className="w-5 h-5" /></Button>
           </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-[hsl(var(--border))] py-8">
+      <footer className="border-t border-[hsl(var(--border))] py-12 bg-[hsl(var(--card))]">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-2">
-              <Sparkles className="w-5 h-5 text-[hsl(var(--primary))]" />
-              <span className="font-bold">ToolHunt</span>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div className="md:col-span-2">
+              <Link href="/" className="flex items-center gap-2 mb-4">
+                <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center">
+                  <Sparkles className="w-5 h-5 text-white" />
+                </div>
+                <span className="text-xl font-bold">ToolHunt</span>
+              </Link>
+              <p className="text-[hsl(var(--muted-foreground))] max-w-md">精心策划的AI工具合集，帮助独立开发者发现最佳工具。</p>
             </div>
-            <nav className="flex items-center gap-6 text-sm text-[hsl(var(--foreground))]/60">
-              <Link href="/tools" className="hover:text-[hsl(var(--foreground))]">All Tools</Link>
-              <Link href="/submit" className="hover:text-[hsl(var(--foreground))]">Submit</Link>
-              <Link href="/about" className="hover:text-[hsl(var(--foreground))]">About</Link>
-              <a href="https://github.com/MingJinMuZi/toolhunt" target="_blank" rel="noopener noreferrer" className="hover:text-[hsl(var(--foreground))]">
-                GitHub
-              </a>
-            </nav>
-            <p className="text-sm text-[hsl(var(--foreground))]/40">
-              © 2026 ToolHunt. Made with ❤️ for indie hackers.
-            </p>
+            <div>
+              <h3 className="font-semibold mb-4">快速链接</h3>
+              <nav className="flex flex-col gap-2">
+                <Link href="/tools" className="text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))]">所有工具</Link>
+                <Link href="/pricing/free" className="text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))]">免费工具</Link>
+                <Link href="/favorites" className="text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))]">我的收藏</Link>
+              </nav>
+            </div>
+            <div>
+              <h3 className="font-semibold mb-4">热门分类</h3>
+              <nav className="flex flex-col gap-2">
+                <Link href="/categories/coding" className="text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))]">编程开发</Link>
+                <Link href="/categories/productivity" className="text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))]">效率工具</Link>
+                <Link href="/categories/creative" className="text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--primary))]">创意设计</Link>
+              </nav>
+            </div>
+          </div>
+          <div className="pt-8 border-t border-[hsl(var(--border))] text-center">
+            <p className="text-sm text-[hsl(var(--muted-foreground))]">© 2026 ToolHunt. Made with ❤️ for indie hackers.</p>
           </div>
         </div>
       </footer>
