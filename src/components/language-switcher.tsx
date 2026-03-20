@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Globe } from "lucide-react";
 import { locales, type Locale } from "@/lib/i18n";
+import { useTranslation } from "@/contexts/LocaleContext";
 
 const localeNames: Record<Locale, string> = {
   zh: "中文",
@@ -10,30 +10,11 @@ const localeNames: Record<Locale, string> = {
 };
 
 export function LanguageSwitcher() {
-  const [locale, setLocale] = useState<Locale>("zh");
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const saved = localStorage.getItem("locale") as Locale;
-    if (saved && locales.includes(saved)) {
-      setLocale(saved);
-    }
-  }, []);
+  const { locale, setLocale } = useTranslation();
 
   const changeLocale = (newLocale: Locale) => {
     setLocale(newLocale);
-    localStorage.setItem("locale", newLocale);
-    window.location.reload();
   };
-
-  if (!mounted) {
-    return (
-      <button className="p-2 rounded-xl bg-[hsl(var(--card))] border border-[hsl(var(--border))]">
-        <Globe className="w-5 h-5" />
-      </button>
-    );
-  }
 
   return (
     <div className="relative group">
@@ -60,25 +41,12 @@ export function LanguageSwitcher() {
 }
 
 export function LanguageSwitcherSimple() {
-  const [locale, setLocale] = useState<Locale>("zh");
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-    const saved = localStorage.getItem("locale") as Locale;
-    if (saved && locales.includes(saved)) {
-      setLocale(saved);
-    }
-  }, []);
+  const { locale, setLocale } = useTranslation();
 
   const toggleLocale = () => {
     const newLocale = locale === "zh" ? "en" : "zh";
     setLocale(newLocale);
-    localStorage.setItem("locale", newLocale);
-    window.location.reload();
   };
-
-  if (!mounted) return null;
 
   return (
     <button onClick={toggleLocale} className="px-3 py-1.5 bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-lg text-sm hover:border-[hsl(var(--primary))]/50 transition-colors">

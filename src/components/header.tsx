@@ -4,20 +4,22 @@ import { useState } from "react";
 import Link from "next/link";
 import { Sparkles, Menu, X, Zap, Heart } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
-import { LanguageSwitcher, LanguageSwitcherSimple } from "./language-switcher";
+import { LanguageSwitcher } from "./language-switcher";
+import { useTranslation } from "@/contexts/LocaleContext";
 
 interface MobileNavProps {
   currentPage?: string;
 }
 
 export function MobileNav({ currentPage }: MobileNavProps) {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { href: "/tools", label: "所有工具", icon: "🔍" },
-    { href: "/favorites", label: "我的收藏", icon: "❤️" },
-    { href: "/pricing/free", label: "免费工具", icon: "🆓" },
-    { href: "/submit", label: "提交工具", icon: "📤" },
+    { href: "/tools", label: t('nav.allTools'), icon: "🔍" },
+    { href: "/favorites", label: t('nav.favorites'), icon: "❤️" },
+    { href: "/pricing/free", label: `${t('pricing.free')} ${t('categories.tools')}`, icon: "🆓" },
+    { href: "/submit", label: t('nav.submit'), icon: "📤" },
   ];
 
   return (
@@ -59,7 +61,7 @@ export function MobileNav({ currentPage }: MobileNavProps) {
                 className="flex items-center justify-center gap-2 w-full py-3 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white rounded-xl font-medium"
               >
                 <Zap className="w-4 h-4" />
-                提交工具
+                {t('nav.submit')}
               </Link>
             </div>
 
@@ -67,7 +69,7 @@ export function MobileNav({ currentPage }: MobileNavProps) {
             <div className="pt-4">
               <div className="flex items-center gap-2 text-sm text-[hsl(var(--muted-foreground))]">
                 <Heart className="w-4 h-4 text-[hsl(var(--featured))]" />
-                <span>收藏数据保存在本地浏览器</span>
+                <span>{t('favorites.tip').slice(0, 20)}...</span>
               </div>
             </div>
           </nav>
@@ -79,6 +81,8 @@ export function MobileNav({ currentPage }: MobileNavProps) {
 
 // 导出简化的Header组件
 export function Header({ currentPage }: { currentPage?: string }) {
+  const { t } = useTranslation();
+
   return (
     <header className="sticky top-0 z-50 border-b border-[hsl(var(--border))] glass-strong">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
@@ -92,13 +96,13 @@ export function Header({ currentPage }: { currentPage?: string }) {
         {/* 桌面端导航 */}
         <nav className="hidden md:flex items-center gap-8">
           <Link href="/tools" className="text-sm text-[hsl(var(--foreground))]/70 hover:text-[hsl(var(--primary))] transition-colors">
-            所有工具
+            {t('nav.allTools')}
           </Link>
           <Link href="/favorites" className="text-sm text-[hsl(var(--foreground))]/70 hover:text-[hsl(var(--primary))] transition-colors">
-            我的收藏
+            {t('nav.favorites')}
           </Link>
           <Link href="/submit" className="text-sm text-[hsl(var(--foreground))]/70 hover:text-[hsl(var(--primary))] transition-colors">
-            提交工具
+            {t('nav.submit')}
           </Link>
         </nav>
 
@@ -109,7 +113,7 @@ export function Header({ currentPage }: { currentPage?: string }) {
           <Link href="/submit" className="hidden sm:block">
             <button className="gap-2 px-4 py-2 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] text-white rounded-xl hover:opacity-90 transition-opacity text-sm font-medium">
               <Zap className="w-4 h-4 inline mr-1" />
-              提交工具
+              {t('nav.submit')}
             </button>
           </Link>
           
