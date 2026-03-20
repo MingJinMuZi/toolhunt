@@ -1,6 +1,7 @@
 import { Search, Sparkles, Verified, Heart, ArrowRight, Zap, TrendingUp, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ToolCard } from "@/components/tool-card";
+import { Header } from "@/components/header";
 import { tools, categories } from "@/data/tools";
 import Link from "next/link";
 
@@ -22,29 +23,7 @@ export default function Home() {
       </div>
 
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-[hsl(var(--border))] glass-strong">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 bg-gradient-to-br from-[hsl(var(--primary))] to-[hsl(var(--accent))] rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Sparkles className="w-5 h-5 text-white" />
-            </div>
-            <span className="text-xl font-bold">ToolHunt</span>
-          </Link>
-          
-          <nav className="hidden md:flex items-center gap-8">
-            <Link href="/tools" className="text-sm text-[hsl(var(--foreground))]/70 hover:text-[hsl(var(--primary))] transition-colors">所有工具</Link>
-            <Link href="/favorites" className="text-sm text-[hsl(var(--foreground))]/70 hover:text-[hsl(var(--primary))] transition-colors">我的收藏</Link>
-            <Link href="/submit" className="text-sm text-[hsl(var(--foreground))]/70 hover:text-[hsl(var(--primary))] transition-colors">提交工具</Link>
-          </nav>
-
-          <Link href="/submit" className="hidden sm:block">
-            <Button className="gap-2 bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--accent))] hover:opacity-90">
-              <Zap className="w-4 h-4" />
-              提交工具
-            </Button>
-          </Link>
-        </div>
-      </header>
+      <Header />
 
       {/* Hero */}
       <section className="container mx-auto px-4 py-16 md:py-24 text-center">
