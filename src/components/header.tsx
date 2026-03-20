@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Sparkles, Menu, X, Zap, Heart } from "lucide-react";
 import { ThemeToggle } from "./theme-toggle";
+import { LanguageSwitcher, LanguageSwitcherSimple } from "./language-switcher";
 
 interface MobileNavProps {
   currentPage?: string;
@@ -102,7 +103,7 @@ export function Header({ currentPage }: { currentPage?: string }) {
         </nav>
 
         <div className="flex items-center gap-3">
-          {/* 主题切换 */}
+          <LanguageSwitcher />
           <ThemeToggle />
           
           <Link href="/submit" className="hidden sm:block">
