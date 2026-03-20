@@ -26,22 +26,24 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { tag: string };
+  params: Promise<{ tag: string }>;
 }): Promise<Metadata> {
-  const tagInfo = popularTags.find((t) => t.id === params.tag);
-  const description = tagDescriptions[params.tag] || "";
+  const { tag: tagId } = await params;
+  const tagInfo = popularTags.find((t) => t.id === tagId);
+  const description = tagDescriptions[tagId] || "";
 
   return {
-    title: `${tagInfo?.label || params.tag}AI工具 - 精选推荐`,
+    title: `${tagInfo?.label || tagId}AI工具 - 精选推荐`,
     description: description,
-    keywords: `${tagInfo?.label}AI工具, ${params.tag}, AI工具推荐`,
+    keywords: `${tagInfo?.label}AI工具, ${tagId}, AI工具推荐`,
   };
 }
 
-export default function TagPage({ params }: { params: { tag: string } }) {
-  const tagInfo = popularTags.find((t) => t.id === params.tag);
-  const tagTools = tools.filter((t) => t.tags.includes(params.tag));
-  const description = tagDescriptions[params.tag] || "";
+export default async function TagPage({ params }: { params: Promise<{ tag: string }> }) {
+  const { tag: tagId } = await params;
+  const tagInfo = popularTags.find((t) => t.id === tagId);
+  const tagTools = tools.filter((t) => t.tags.includes(tagId));
+  const description = tagDescriptions[tagId] || "";
 
   if (!tagInfo) {
     return (
@@ -137,7 +139,7 @@ export default function TagPage({ params }: { params: { tag: string } }) {
         <h2 className="text-xl font-bold mb-4">其他标签</h2>
         <div className="flex flex-wrap gap-3">
           {popularTags
-            .filter((t) => t.id !== params.tag)
+            .filter((t) => t.id !== tagId)
             .map((t) => (
               <Link key={t.id} href={`/tags/${t.id}`}>
                 <div className="px-4 py-2 bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-lg hover:border-[hsl(var(--primary))]/50 transition-colors">

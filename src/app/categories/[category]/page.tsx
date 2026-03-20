@@ -19,9 +19,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { category: string };
+  params: Promise<{ category: string }>;
 }): Promise<Metadata> {
-  const seo = getCategorySEO(params.category);
+  const { category: categoryId } = await params;
+  const seo = getCategorySEO(categoryId);
   
   if (!seo) {
     return {
@@ -39,24 +40,25 @@ export async function generateMetadata({
       type: "website",
     },
     alternates: {
-      canonical: `https://toolhunt.ai/categories/${params.category}`,
+      canonical: `https://toolhunt.ai/categories/${categoryId}`,
     },
   };
 }
 
-export default function CategoryPage({
+export default async function CategoryPage({
   params,
 }: {
-  params: { category: string };
+  params: Promise<{ category: string }>;
 }) {
-  const category = categories.find((c) => c.id === params.category);
+  const { category: categoryId } = await params;
+  const category = categories.find((c) => c.id === categoryId);
 
   if (!category) {
     notFound();
   }
 
-  const categoryTools = tools.filter((t) => t.category === params.category);
-  const seo = getCategorySEO(params.category);
+  const categoryTools = tools.filter((t) => t.category === categoryId);
+  const seo = getCategorySEO(categoryId);
 
   // 结构化数据
   const breadcrumbSchema = generateBreadcrumbSchema([
@@ -177,7 +179,7 @@ export default function CategoryPage({
           <h2 className="text-xl font-bold mb-4">其他分类</h2>
           <div className="flex flex-wrap gap-3">
             {categories
-              .filter((c) => c.id !== category.id)
+              .filter((c) => c.id !== category.id && c.id !== "all")
               .map((c) => (
                 <Link key={c.id} href={`/categories/${c.id}`}>
                   <div className="px-4 py-2 bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-lg hover:border-[hsl(var(--primary))]/50 transition-colors">

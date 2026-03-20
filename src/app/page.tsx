@@ -133,16 +133,21 @@ export default function Home() {
       {/* Categories */}
       <section className="container mx-auto px-4 py-12">
         <h2 className="text-2xl font-bold mb-6">Browse by Category</h2>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {categories.slice(1).map((category) => (
-            <Link key={category.id} href={`/tools?category=${category.id}`}>
-              <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-xl p-4 text-center hover:border-[hsl(var(--primary))]/50 transition-all hover:scale-105 cursor-pointer">
-                <span className="text-3xl">{category.icon}</span>
-                <p className="font-medium mt-2">{category.label}</p>
-                <p className="text-xs text-[hsl(var(--foreground))]/50">{category.count} tools</p>
-              </div>
-            </Link>
-          ))}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {categories.slice(1).map((category) => {
+            const count = category.id === "all" 
+              ? tools.length 
+              : tools.filter(t => t.category === category.id).length;
+            return (
+              <Link key={category.id} href={`/tools?category=${category.id}`}>
+                <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-xl p-4 text-center hover:border-[hsl(var(--primary))]/50 transition-all hover:scale-105 cursor-pointer">
+                  <span className="text-3xl">{category.icon}</span>
+                  <p className="font-medium mt-2">{category.label}</p>
+                  <p className="text-xs text-[hsl(var(--foreground))]/50">{count} tools</p>
+                </div>
+              </Link>
+            );
+          })}
         </div>
       </section>
 

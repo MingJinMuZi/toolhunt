@@ -45,9 +45,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({
   params,
 }: {
-  params: { pricing: string };
+  params: Promise<{ pricing: string }>;
 }): Promise<Metadata> {
-  const info = pricingInfo[params.pricing];
+  const { pricing } = await params;
+  const info = pricingInfo[pricing];
 
   if (!info) {
     return { title: "页面未找到" };
@@ -56,12 +57,13 @@ export async function generateMetadata({
   return {
     title: `${info.title} - 精选推荐 | ToolHunt`,
     description: info.description,
-    keywords: `${info.title}, AI工具, ${params.pricing}`,
+    keywords: `${info.title}, AI工具, ${pricing}`,
   };
 }
 
-export default function PricingPage({ params }: { params: { pricing: string } }) {
-  const info = pricingInfo[params.pricing];
+export default async function PricingPage({ params }: { params: Promise<{ pricing: string }> }) {
+  const { pricing: pricingId } = await params;
+  const info = pricingInfo[pricingId];
 
   if (!info) {
     return (
@@ -156,7 +158,7 @@ export default function PricingPage({ params }: { params: { pricing: string } })
         <h2 className="text-xl font-bold mb-4">其他定价选项</h2>
         <div className="flex flex-wrap gap-3">
           {Object.entries(pricingInfo)
-            .filter(([key]) => key !== params.pricing)
+            .filter(([key]) => key !== pricingId)
             .map(([key, value]) => (
               <Link key={key} href={`/pricing/${key}`}>
                 <div className="px-4 py-2 bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-lg hover:border-[hsl(var(--primary))]/50 transition-colors flex items-center gap-2">

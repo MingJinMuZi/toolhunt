@@ -65,8 +65,11 @@ export default function RootLayout({
   return (
     <html lang="zh-CN" className="dark">
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/icon.svg" />
         <link rel="canonical" href="https://toolhunt.ai" />
+        <meta name="theme-color" content="#8B5CF6" />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
         {children}

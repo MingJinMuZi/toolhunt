@@ -11,12 +11,12 @@ export interface Category {
 
 export const categories: Category[] = [
   {
-    id: "agents",
-    label: "AI助手",
-    labelEn: "AI Agents",
-    icon: "🤖",
-    description: "智能AI助手、聊天机器人、AI代理平台",
-    keywords: ["AI助手", "聊天机器人", "ChatGPT", "Claude", "AI代理"]
+    id: "all",
+    label: "全部",
+    labelEn: "All",
+    icon: "🌟",
+    description: "所有AI工具",
+    keywords: ["AI工具", "全部工具"]
   },
   {
     id: "coding",
@@ -27,28 +27,36 @@ export const categories: Category[] = [
     keywords: ["AI编程", "代码生成", "Cursor", "GitHub Copilot", "AI开发"]
   },
   {
-    id: "content",
-    label: "内容创作",
-    labelEn: "Content",
-    icon: "✍️",
-    description: "AI写作、营销文案、内容生成工具",
-    keywords: ["AI写作", "文案生成", "营销内容", "SEO写作"]
-  },
-  {
-    id: "creative",
-    label: "创意设计",
-    labelEn: "Creative",
-    icon: "🎨",
-    description: "AI图片、视频、音频、设计工具",
-    keywords: ["AI绘画", "视频生成", "音乐创作", "AI设计"]
-  },
-  {
     id: "productivity",
     label: "效率工具",
     labelEn: "Productivity",
     icon: "⚡",
     description: "笔记、会议、日程、知识管理工具",
     keywords: ["AI笔记", "会议助手", "知识管理", "效率工具"]
+  },
+  {
+    id: "creative",
+    label: "创意设计",
+    labelEn: "Creative",
+    icon: "🎨",
+    description: "AI图片生成、设计工具、创意平台",
+    keywords: ["AI绘画", "AI设计", "图片生成", "创意工具"]
+  },
+  {
+    id: "agents",
+    label: "AI助手",
+    labelEn: "AI Agents",
+    icon: "🤖",
+    description: "智能AI助手、聊天机器人、AI代理平台",
+    keywords: ["AI助手", "聊天机器人", "ChatGPT", "Claude", "AI代理"]
+  },
+  {
+    id: "content",
+    label: "内容创作",
+    labelEn: "Content",
+    icon: "✍️",
+    description: "AI写作、营销文案、内容生成工具",
+    keywords: ["AI写作", "文案生成", "营销内容", "SEO写作"]
   },
   {
     id: "automation",
@@ -59,12 +67,44 @@ export const categories: Category[] = [
     keywords: ["自动化", "工作流", "Zapier", "无代码"]
   },
   {
-    id: "business",
-    label: "商业工具",
-    labelEn: "Business",
-    icon: "💼",
-    description: "销售、客服、营销自动化工具",
-    keywords: ["销售工具", "客服AI", "CRM", "营销自动化"]
+    id: "video",
+    label: "视频工具",
+    labelEn: "Video",
+    icon: "🎬",
+    description: "AI视频生成、编辑、剪辑工具",
+    keywords: ["AI视频", "视频生成", "视频编辑", "AI剪辑"]
+  },
+  {
+    id: "audio",
+    label: "音频工具",
+    labelEn: "Audio",
+    icon: "🎵",
+    description: "AI音乐生成、语音合成、音频处理",
+    keywords: ["AI音乐", "语音合成", "TTS", "音频生成"]
+  },
+  {
+    id: "marketing",
+    label: "营销工具",
+    labelEn: "Marketing",
+    icon: "📢",
+    description: "SEO优化、广告创意、社媒营销工具",
+    keywords: ["AI营销", "SEO工具", "广告生成", "社媒营销"]
+  },
+  {
+    id: "design",
+    label: "设计工具",
+    labelEn: "Design",
+    icon: "🎯",
+    description: "UI设计、Logo生成、品牌设计工具",
+    keywords: ["AI设计", "Logo生成", "UI设计", "品牌设计"]
+  },
+  {
+    id: "writing",
+    label: "写作工具",
+    labelEn: "Writing",
+    icon: "📝",
+    description: "AI写作助手、小说创作、内容优化",
+    keywords: ["AI写作", "小说创作", "内容优化", "写作助手"]
   },
   {
     id: "research",
@@ -75,20 +115,36 @@ export const categories: Category[] = [
     keywords: ["学术研究", "AI教育", "知识发现", "学习工具"]
   },
   {
-    id: "developer-tools",
-    label: "开发者工具",
-    labelEn: "Developer Tools",
-    icon: "🛠️",
-    description: "API、SDK、向量数据库、LLM基础设施",
-    keywords: ["API", "SDK", "向量数据库", "LLM", "开发者"]
+    id: "business",
+    label: "商业工具",
+    labelEn: "Business",
+    icon: "💼",
+    description: "数据分析、项目管理、商业智能",
+    keywords: ["商业分析", "项目管理", "数据洞察", "商业智能"]
   },
   {
-    id: "lifestyle",
-    label: "生活娱乐",
-    labelEn: "Lifestyle",
-    icon: "📱",
-    description: "个人助理、娱乐、生活方式AI工具",
-    keywords: ["AI助理", "娱乐AI", "生活工具", "个人助理"]
+    id: "support",
+    label: "客服支持",
+    labelEn: "Support",
+    icon: "💬",
+    description: "AI客服、聊天机器人、客户支持工具",
+    keywords: ["AI客服", "聊天机器人", "客户支持", "智能客服"]
+  },
+  {
+    id: "education",
+    label: "教育学习",
+    labelEn: "Education",
+    icon: "📚",
+    description: "AI教育、在线学习、知识培训工具",
+    keywords: ["AI教育", "在线学习", "知识培训", "智能教学"]
+  },
+  {
+    id: "sales",
+    label: "销售工具",
+    labelEn: "Sales",
+    icon: "📈",
+    description: "销售自动化、客户管理、CRM工具",
+    keywords: ["销售AI", "CRM", "客户管理", "销售自动化"]
   }
 ];
 
