@@ -2,8 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 暗色主题（默认） */
+/* 亮色主题（默认） */
 :root {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 4%;
+  --card: 0 0% 98%;
+  --card-foreground: 0 0% 4%;
+  --primary: 239 84% 57%;
+  --primary-foreground: 0 0% 100%;
+  --accent: 142 76% 36%;
+  --accent-foreground: 0 0% 100%;
+  --featured: 38 92% 50%;
+  --featured-foreground: 0 0% 9%;
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  --ring: 239 84% 57%;
+  --muted: 0 0% 95%;
+  --muted-foreground: 0 0% 45%;
+  --success: 142 76% 36%;
+  --warning: 38 92% 50%;
+  --danger: 0 84% 60%;
+}
+
+/* 暗色主题 */
+.dark {
   --background: 0 0% 4%;
   --foreground: 0 0% 98%;
   --card: 0 0% 8%;
@@ -22,25 +44,6 @@
   --success: 142 76% 36%;
   --warning: 38 92% 50%;
   --danger: 0 84% 60%;
-}
-
-/* 亮色主题 */
-:root:not(.dark) {
-  --background: 0 0% 100%;
-  --foreground: 0 0% 4%;
-  --card: 0 0% 98%;
-  --card-foreground: 0 0% 4%;
-  --primary: 239 84% 57%;
-  --primary-foreground: 0 0% 100%;
-  --accent: 142 76% 36%;
-  --accent-foreground: 0 0% 100%;
-  --featured: 38 92% 50%;
-  --featured-foreground: 0 0% 9%;
-  --border: 0 0% 90%;
-  --input: 0 0% 90%;
-  --ring: 239 84% 57%;
-  --muted: 0 0% 95%;
-  --muted-foreground: 0 0% 45%;
 }
 
 * {
