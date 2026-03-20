@@ -1,6 +1,7 @@
 "use client";
 
 import { categories as defaultCategories } from "@/data/tools";
+import { useTranslation } from "@/contexts/LocaleContext";
 
 interface Category {
   id: string;
@@ -20,6 +21,8 @@ export function CategoryTabs({
   selectedCategory = "all",
   onSelectCategory
 }: CategoryTabsProps) {
+  const { tc } = useTranslation();
+
   return (
     <div className="flex flex-wrap gap-2">
       {categories.map((category) => {
@@ -38,7 +41,7 @@ export function CategoryTabs({
             `}
           >
             <span>{category.icon}</span>
-            <span>{category.label}</span>
+            <span>{tc(category.id)}</span>
             {category.count !== undefined && (
               <span className={`text-xs ${isSelected ? "text-white/70" : "text-[hsl(var(--foreground))]/50"}`}>
                 {category.count}
