@@ -292,6 +292,135 @@ export const toolTranslations: Record<string, Record<Locale, ToolTranslation>> =
   // ==================== 更多营销工具 ====================
   "predis-ai": { zh: { shortDesc: "AI社媒营销", description: "AI社交媒体内容生成，图片和视频创作。" }, en: {} },
   "ocoya": { zh: { shortDesc: "AI社媒管理", description: "AI社交媒体管理平台，内容创作和排程。" }, en: {} },
+
+  // ==================== 更多AI助手 ====================
+  "deepseek": { zh: { shortDesc: "DeepSeek AI", description: "中国领先的大模型，代码和推理能力强。" }, en: {} },
+  "perplexity-pro": { zh: { shortDesc: "AI搜索高级版", description: "Perplexity高级版，GPT-4和Claude支持。" }, en: {} },
+  "mistral-ai": { zh: { shortDesc: "Mistral AI", description: "欧洲开源大模型，高效推理能力。" }, en: {} },
+  "you-com": { zh: { shortDesc: "AI搜索引擎", description: "AI搜索平台，隐私友好的搜索体验。" }, en: {} },
+  "character-ai": { zh: { shortDesc: "AI角色聊天", description: "AI角色扮演平台，与虚拟角色对话。" }, en: {} },
+  "huggingchat": { zh: { shortDesc: "开源AI聊天", description: "Hugging Face开源聊天助手，多种模型。" }, en: {} },
+  "inflection-pi": { zh: { shortDesc: "Pi AI助手", description: "Inflection AI个人助手，情感对话。" }, en: {} },
+  "cohere-coral": { zh: { shortDesc: "Cohere企业AI", description: "Cohere企业级AI助手，安全可靠。" }, en: {} },
+  "xai-grok": { zh: { shortDesc: "xAI Grok", description: "马斯克xAI的AI助手，实时信息访问。" }, en: {} },
+  "ai21-labs": { zh: { shortDesc: "AI21大模型", description: "AI21 Labs大语言模型，文本生成。" }, en: {} },
+  "reka-ai": { zh: { shortDesc: "Reka AI", description: "多模态AI模型，图像和文本理解。" }, en: {} },
+  "moonshot-ai": { zh: { shortDesc: "Moonshot Kimi", description: "月之暗面Kimi，长文本处理能力强。" }, en: {} },
+  "zhipu-ai": { zh: { shortDesc: "智谱AI", description: "智谱清言，中文理解和生成能力。" }, en: {} },
+  "databricks-dolly": { zh: { shortDesc: "Dolly开源模型", description: "Databricks开源指令模型。" }, en: {} },
+  "groq": { zh: { shortDesc: "Groq推理引擎", description: "超快推理引擎，极低延迟AI推理。" }, en: {} },
+  "lepton-ai": { zh: { shortDesc: "AI推理平台", description: "AI模型部署平台，快速推理服务。" }, en: {} },
+  "anyscale": { zh: { shortDesc: "AI计算平台", description: "Ray AI计算平台，分布式AI训练。" }, en: {} },
+  "modal": { zh: { shortDesc: "云函数平台", description: "无服务器云平台，AI应用部署。" }, en: {} },
+
+  // ==================== 更多编程工具 ====================
+  "cursor-pro": { zh: { shortDesc: "Cursor专业版", description: "Cursor专业版，无限AI补全。" }, en: {} },
+  "windsurf-ide": { zh: { shortDesc: "Windsurf IDE", description: "Codeium AI优先IDE，深度AI集成。" }, en: {} },
+  "zed-editor": { zh: { shortDesc: "Zed编辑器", description: "高性能编辑器，团队协作和AI助手。" }, en: {} },
+  "pearai": { zh: { shortDesc: "Pear AI编程", description: "AI编程助手，代码生成和审查。" }, en: {} },
+  "pearcastle": { zh: { shortDesc: "Pearcastle", description: "AI代码审查平台，自动化代码检查。" }, en: {} },
+  "codecraft": { zh: { shortDesc: "AI代码生成", description: "AI代码生成工具，快速原型开发。" }, en: {} },
+  "pieces-dev": { zh: { shortDesc: "Pieces开发者", description: "开发者工具套件，代码片段管理。" }, en: {} },
+  "mutable-ai": { zh: { shortDesc: "Mutable AI", description: "AI代码生成和重构工具。" }, en: {} },
+  "tabnine-enterprise": { zh: { shortDesc: "Tabnine企业版", description: "Tabnine企业级AI编程助手。" }, en: {} },
+  "amazon-codewhisperer": { zh: { shortDesc: "AWS AI编程", description: "亚马逊AI代码补全工具。" }, en: {} },
+  "replit-ai": { zh: { shortDesc: "Replit AI", description: "Replit内置AI编程助手。" }, en: {} },
+  "codegpt": { zh: { shortDesc: "CodeGPT", description: "VSCode AI编程扩展，多种模型支持。" }, en: {} },
+  "askcodi": { zh: { shortDesc: "AskCodi", description: "AI编程问答助手，代码解释和生成。" }, en: {} },
+  "bugasura": { zh: { shortDesc: "AI Bug追踪", description: "AI驱动的Bug追踪和管理工具。" }, en: {} },
+  "what-the-diff": { zh: { shortDesc: "AI代码差异", description: "AI代码差异解释工具，理解变更。" }, en: {} },
+  "greptile": { zh: { shortDesc: "AI代码搜索", description: "AI代码搜索引擎，代码库问答。" }, en: {} },
+  "bloop-ai": { zh: { shortDesc: "Bloop AI", description: "AI代码搜索工具，自然语言查询代码。" }, en: {} },
+  "smol-developer": { zh: { shortDesc: "Smol开发者", description: "轻量级AI编程智能体。" }, en: {} },
+
+  // ==================== LLM开发工具 ====================
+  "langflow": { zh: { shortDesc: "LangFlow可视化", description: "LangChain可视化构建器，拖拽创建AI应用。" }, en: {} },
+  "haystack": { zh: { shortDesc: "Haystack框架", description: "LLM应用框架，NLP管道构建。" }, en: {} },
+  "semantic-kernel": { zh: { shortDesc: "Semantic Kernel", description: "微软LLM集成框架，AI技能编排。" }, en: {} },
+  "chroma": { zh: { shortDesc: "Chroma向量库", description: "开源向量数据库，AI嵌入存储。" }, en: {} },
+  "milvus": { zh: { shortDesc: "Milvus向量库", description: "云原生向量数据库，大规模相似性搜索。" }, en: {} },
+
+  // ==================== 代码生成模型 ====================
+  "deepseek-coder": { zh: { shortDesc: "DeepSeek代码模型", description: "DeepSeek代码专用模型，编程能力出色。" }, en: {} },
+  "starcoder": { zh: { shortDesc: "StarCoder", description: "Hugging Face代码生成模型，80+语言。" }, en: {} },
+  "codellama": { zh: { shortDesc: "Code Llama", description: "Meta代码生成模型，基于Llama。" }, en: {} },
+  "wizardcoder": { zh: { shortDesc: "WizardCoder", description: "高质量代码生成模型。" }, en: {} },
+  "refact-ai": { zh: { shortDesc: "Refact AI", description: "开源代码补全模型。" }, en: {} },
+  "fauxpilot": { zh: { shortDesc: "FauxPilot", description: "本地GitHub Copilot替代方案。" }, en: {} },
+  "tabby": { zh: { shortDesc: "Tabby自托管", description: "自托管AI编程助手，保护隐私。" }, en: {} },
+
+  // ==================== 本地AI工具 ====================
+  "ollama": { zh: { shortDesc: "Ollama本地LLM", description: "本地运行大语言模型，简单易用。" }, en: {} },
+  "localai": { zh: { shortDesc: "LocalAI", description: "OpenAI兼容的本地AI服务。" }, en: {} },
+  "lm-studio": { zh: { shortDesc: "LM Studio", description: "桌面应用运行本地大模型。" }, en: {} },
+  "jan": { zh: { shortDesc: "Jan本地AI", description: "开源本地AI助手，隐私优先。" }, en: {} },
+  "gpt4all": { zh: { shortDesc: "GPT4All", description: "本地运行的开源聊天机器人。" }, en: {} },
+  "privategpt": { zh: { shortDesc: "PrivateGPT", description: "私有GPT，本地文档问答。" }, en: {} },
+  "quivr": { zh: { shortDesc: "Quivr", description: "AI第二大脑，本地知识库。" }, en: {} },
+
+  // ==================== 更多营销工具 ====================
+  "jasper-ai": { zh: { shortDesc: "Jasper AI营销", description: "企业级AI营销文案平台。" }, en: {} },
+  "contentstudio": { zh: { shortDesc: "内容营销平台", description: "AI内容营销平台，多渠道发布。" }, en: {} },
+  "narrato": { zh: { shortDesc: "AI内容平台", description: "AI内容创作和管理平台。" }, en: {} },
+  "longshot-ai": { zh: { shortDesc: "AI长文写作", description: "AI长内容生成工具，SEO优化。" }, en: {} },
+  "scalenut": { zh: { shortDesc: "AI SEO平台", description: "AI SEO内容创作平台。" }, en: {} },
+  "neuronwriter": { zh: { shortDesc: "AI内容优化", description: "AI内容优化工具，SEO分析。" }, en: {} },
+  "ink-editor": { zh: { shortDesc: "INK AI写作", description: "AI写作和SEO优化编辑器。" }, en: {} },
+  "outranking": { zh: { shortDesc: "AI SEO策略", description: "AI SEO策略和内容规划工具。" }, en: {} },
+  "growthbar": { zh: { shortDesc: "AI SEO工具", description: "AI SEO研究和内容生成。" }, en: {} },
+  "blogseo-ai": { zh: { shortDesc: "博客SEO AI", description: "AI博客SEO优化工具。" }, en: {} },
+  "article-forge": { zh: { shortDesc: "AI文章生成", description: "AI批量文章生成工具。" }, en: {} },
+  "kafkai": { zh: { shortDesc: "AI内容生成", description: "AI文章生成器，SEO友好。" }, en: {} },
+  "wordai": { zh: { shortDesc: "AI文章改写", description: "AI文章改写工具，避免重复。" }, en: {} },
+  "spin-rewriter": { zh: { shortDesc: "文章旋转工具", description: "AI文章改写和旋转工具。" }, en: {} },
+
+  // ==================== 更多创意工具 ====================
+  "midjourney-v6": { zh: { shortDesc: "MJ V6版本", description: "Midjourney最新版本，照片级图像生成。" }, en: {} },
+  "stable-diffusion-xl": { zh: { shortDesc: "SDXL模型", description: "Stable Diffusion XL，高质量图像生成。" }, en: {} },
+  "flux-ai": { zh: { shortDesc: "Flux图像生成", description: "开源高质量图像生成模型。" }, en: {} },
+  "nightcafe": { zh: { shortDesc: "NightCafe创作", description: "AI艺术生成社区，多种风格。" }, en: {} },
+  "dreamstudio": { zh: { shortDesc: "DreamStudio", description: "Stability AI官方图像生成平台。" }, en: {} },
+  "civitai": { zh: { shortDesc: "Civitai模型库", description: "AI图像模型分享社区。" }, en: {} },
+  "fontjoy": { zh: { shortDesc: "AI字体配对", description: "AI字体组合推荐工具。" }, en: {} },
+
+  // ==================== 更多视频工具 ====================
+  "runway-gen-3": { zh: { shortDesc: "Runway Gen-3", description: "Runway最新视频生成模型，电影级效果。" }, en: {} },
+  "pika-labs": { zh: { shortDesc: "Pika Labs", description: "AI视频生成平台，创意视频制作。" }, en: {} },
+  "luma-dream-machine": { zh: { shortDesc: "Luma视频生成", description: "Luma AI视频生成工具。" }, en: {} },
+  "kling-ai": { zh: { shortDesc: "可灵AI", description: "快手AI视频生成，中文友好。" }, en: {} },
+  "haiper-ai": { zh: { shortDesc: "Haiper视频", description: "AI视频生成平台，高质量输出。" }, en: {} },
+  "did": { zh: { shortDesc: "D-ID数字人", description: "AI数字人生成平台，照片转视频。" }, en: {} },
+  "avatar-ai": { zh: { shortDesc: "AI虚拟形象", description: "AI虚拟人生成工具。" }, en: {} },
+
+  // ==================== 更多效率工具 ====================
+  "mem-ai": { zh: { shortDesc: "Mem AI笔记", description: "AI笔记应用，自动组织信息。" }, en: {} },
+  "linear-ai": { zh: { shortDesc: "Linear AI", description: "项目管理工具AI功能。" }, en: {} },
+  "vimcal": { zh: { shortDesc: "AI日历", description: "快速日历应用，AI排程。" }, en: {} },
+  "fantastical-ai": { zh: { shortDesc: "Fantastical AI", description: "macOS日历AI功能。" }, en: {} },
+  "superhuman-ai": { zh: { shortDesc: "Superhuman AI", description: "邮件客户端AI助手。" }, en: {} },
+  "shortwave-ai": { zh: { shortDesc: "Shortwave AI邮件", description: "AI驱动的邮件客户端。" }, en: {} },
+  "spark-ai": { zh: { shortDesc: "Spark AI邮件", description: "Spark邮件AI功能。" }, en: {} },
+  "feedly-ai": { zh: { shortDesc: "Feedly AI", description: "RSS阅读器AI功能。" }, en: {} },
+  "instapaper-ai": { zh: { shortDesc: "Instapaper AI", description: "稍后读应用AI摘要。" }, en: {} },
+  "pocket-ai": { zh: { shortDesc: "Pocket AI", description: "收藏应用AI功能。" }, en: {} },
+
+  // ==================== 更多自动化工具 ====================
+  "zapier-ai": { zh: { shortDesc: "Zapier AI", description: "自动化平台AI功能。" }, en: {} },
+  "bardeen-ai": { zh: { shortDesc: "Bardeen AI", description: "浏览器自动化AI助手。" }, en: {} },
+  "lindy-ai": { zh: { shortDesc: "Lindy AI助理", description: "AI助理自动化平台。" }, en: {} },
+  "retool-ai": { zh: { shortDesc: "Retool AI", description: "内部工具平台AI功能。" }, en: {} },
+  "typeform-ai": { zh: { shortDesc: "Typeform AI", description: "表单工具AI功能。" }, en: {} },
+  "instantly-ai": { zh: { shortDesc: "Instantly AI", description: "冷邮件自动化AI。" }, en: {} },
+  "clay-ai": { zh: { shortDesc: "Clay AI数据", description: "AI数据丰富平台。" }, en: {} },
+  "magic-dev": { zh: { shortDesc: "Magic开发工具", description: "AI开发者工具套件。" }, en: {} },
+
+  // ==================== 更多销售工具 ====================
+  "gong-ai": { zh: { shortDesc: "Gong AI销售", description: "销售对话AI分析平台。" }, en: {} },
+  "apollo-io-ai": { zh: { shortDesc: "Apollo AI", description: "销售智能AI平台。" }, en: {} },
+  "outreach-ai": { zh: { shortDesc: "Outreach AI", description: "销售自动化AI功能。" }, en: {} },
+
+  // ==================== 更多研究工具 ====================
+  "elicit-ai": { zh: { shortDesc: "Elicit AI研究", description: "AI研究助手，文献综述自动化。" }, en: {} },
 };
 
 // 获取工具翻译
