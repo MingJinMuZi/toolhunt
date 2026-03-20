@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ToolCard } from "@/components/tool-card";
 import { Header } from "@/components/header";
 import { tools, categories } from "@/data/tools";
+import { generateFAQSchema, generateOrganizationSchema, defaultFAQs } from "@/lib/seo";
 import Link from "next/link";
 
 export const metadata = {
@@ -12,9 +13,15 @@ export const metadata = {
 
 export default function Home() {
   const featuredTools = tools.filter(t => t.isFeatured).slice(0, 6);
+  const faqSchema = generateFAQSchema(defaultFAQs.slice(0, 4));
+  const orgSchema = generateOrganizationSchema();
 
   return (
     <main className="min-h-screen relative">
+      {/* 结构化数据 */}
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }} />
+
       {/* 背景装饰 */}
       <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-96 h-96 bg-[hsl(var(--primary))] opacity-5 rounded-full blur-3xl" />

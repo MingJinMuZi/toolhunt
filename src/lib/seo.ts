@@ -109,3 +109,85 @@ export function generateWebsiteSchema() {
     }
   };
 }
+
+// 生成FAQ结构化数据
+export function generateFAQSchema(faqs: { question: string; answer: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+}
+
+// 生成AggregateRating结构化数据
+export function generateAggregateRatingSchema(params: {
+  name: string;
+  ratingValue: number;
+  ratingCount: number;
+  bestRating?: number;
+  worstRating?: number;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "AggregateRating",
+    "itemReviewed": {
+      "@type": "SoftwareApplication",
+      "name": params.name
+    },
+    "ratingValue": params.ratingValue,
+    "ratingCount": params.ratingCount,
+    "bestRating": params.bestRating || 5,
+    "worstRating": params.worstRating || 1
+  };
+}
+
+// 生成Organization结构化数据
+export function generateOrganizationSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": siteConfig.name,
+    "url": siteConfig.url,
+    "logo": `${siteConfig.url}/og.png`,
+    "sameAs": [
+      siteConfig.links.twitter,
+      siteConfig.links.github
+    ],
+    "description": siteConfig.description
+  };
+}
+
+// 默认FAQ数据
+export const defaultFAQs = [
+  {
+    question: "ToolHunt是什么？",
+    answer: "ToolHunt是一个精心策划的AI工具导航站，帮助独立开发者、创业者和创作者发现最佳AI工具。我们收录了400+工具，涵盖编程、设计、写作、营销等领域。"
+  },
+  {
+    question: "工具是如何被收录的？",
+    answer: "我们通过人工审核的方式收录工具。每个工具都会经过质量评估，包括功能完整性、用户体验、更新频率等维度。用户也可以提交工具申请收录。"
+  },
+  {
+    question: "如何评价一个工具？",
+    answer: "在工具详情页，你可以点击星星进行评分。评分数据存储在你的浏览器本地，帮助我们改进推荐算法。"
+  },
+  {
+    question: "收藏功能是如何工作的？",
+    answer: "收藏数据存储在你的浏览器localStorage中。这意味着数据不会同步到其他设备，清除浏览器数据会丢失收藏记录。未来我们会添加账户系统支持云同步。"
+  },
+  {
+    question: "如何提交我的AI工具？",
+    answer: "点击导航栏的「提交工具」按钮，填写工具名称、描述、URL等信息。我们会在1-3个工作日内审核并回复。"
+  },
+  {
+    question: "ToolHunt支持多语言吗？",
+    answer: "是的，目前支持中文和英文。点击导航栏的语言切换按钮即可切换。更多语言支持正在开发中。"
+  }
+];
