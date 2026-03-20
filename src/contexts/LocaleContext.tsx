@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, useEffect, ReactNode, useMemo, useCallback } from "react";
 import { Locale, defaultLocale, t as translate, getCategoryName as getCategory, getTagName as getTag, getPricingLabel as getPricing } from "@/lib/i18n";
 import { getToolTranslation, ToolTranslation } from "@/data/translations";
 
@@ -8,10 +8,10 @@ interface LocaleContextType {
   locale: Locale;
   setLocale: (locale: Locale) => void;
   t: (key: string, params?: Record<string, string | number>) => string;
-  tc: (categoryId: string) => string; // 获取分类名称
-  tt: (tagId: string) => string; // 获取标签名称
-  tp: (pricing: string) => { label: string; desc: string }; // 获取定价标签
-  tool: (slug: string) => ToolTranslation; // 获取工具翻译
+  tc: (categoryId: string) => string;
+  tt: (tagId: string) => string;
+  tp: (pricing: string) => { label: string; desc: string };
+  tool: (slug: string) => ToolTranslation;
 }
 
 const LocaleContext = createContext<LocaleContextType>({
@@ -34,19 +34,38 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const setLocale = (newLocale: Locale) => {
+  const setLocale = useCallback((newLocale: Locale) => {
     setLocaleState(newLocale);
     localStorage.setItem("locale", newLocale);
-  };
+  }, []);
 
-  const t = (key: string, params?: Record<string, string | number>) => translate(key, locale, params);
-  const tc = (categoryId: string) => getCategory(categoryId, locale);
-  const tt = (tagId: string) => getTag(tagId, locale);
-  const tp = (pricing: string) => getPricing(pricing, locale);
-  const tool = (slug: string) => getToolTranslation(slug, locale);
+  const t = useCallback((key: string, params?: Record<string, string | number>) => 
+    translate(key, locale, params), [locale]);
+
+  const tc = useCallback((categoryId: string) => 
+    getCategory(categoryId, locale), [locale]);
+
+  const tt = useCallback((tagId: string) => 
+    getTag(tagId, locale), [locale]);
+
+  const tp = useCallback((pricing: string) => 
+    getPricing(pricing, locale), [locale]);
+
+  const tool = useCallback((slug: string) => 
+    getToolTranslation(slug, locale), [locale]);
+
+  const value = useMemo(() => ({
+    locale,
+    setLocale,
+    t,
+    tc,
+    tt,
+    tp,
+    tool,
+  }), [locale, setLocale, t, tc, tt, tp, tool]);
 
   return (
-    <LocaleContext.Provider value={{ locale, setLocale, t, tc, tt, tp, tool }}>
+    <LocaleContext.Provider value={value}>
       {children}
     </LocaleContext.Provider>
   );
