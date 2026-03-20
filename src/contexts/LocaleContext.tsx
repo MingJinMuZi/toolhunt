@@ -1,26 +1,33 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { Locale, defaultLocale, t as translate } from "@/lib/i18n";
+import { Locale, defaultLocale, t as translate, getCategoryName as getCategory, getTagName as getTag, getPricingLabel as getPricing } from "@/lib/i18n";
+import { getToolTranslation, ToolTranslation } from "@/data/translations";
 
 interface LocaleContextType {
   locale: Locale;
   setLocale: (locale: Locale) => void;
   t: (key: string, params?: Record<string, string | number>) => string;
+  tc: (categoryId: string) => string; // 获取分类名称
+  tt: (tagId: string) => string; // 获取标签名称
+  tp: (pricing: string) => { label: string; desc: string }; // 获取定价标签
+  tool: (slug: string) => ToolTranslation; // 获取工具翻译
 }
 
 const LocaleContext = createContext<LocaleContextType>({
   locale: defaultLocale,
   setLocale: () => {},
   t: (key) => key,
+  tc: (id) => id,
+  tt: (id) => id,
+  tp: (p) => ({ label: p, desc: "" }),
+  tool: () => ({}),
 });
 
 export function LocaleProvider({ children }: { children: ReactNode }) {
   const [locale, setLocaleState] = useState<Locale>(defaultLocale);
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
     const saved = localStorage.getItem("locale") as Locale;
     if (saved && (saved === "zh" || saved === "en")) {
       setLocaleState(saved);
@@ -32,15 +39,14 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("locale", newLocale);
   };
 
-  const t = (key: string, params?: Record<string, string | number>) => {
-    return translate(key, locale, params);
-  };
-
-  // 避免hydration不匹配，服务端渲染时返回默认语言
-  const tWrapper = (key: string, params?: Record<string, string | number>) => translate(key, locale, params);
+  const t = (key: string, params?: Record<string, string | number>) => translate(key, locale, params);
+  const tc = (categoryId: string) => getCategory(categoryId, locale);
+  const tt = (tagId: string) => getTag(tagId, locale);
+  const tp = (pricing: string) => getPricing(pricing, locale);
+  const tool = (slug: string) => getToolTranslation(slug, locale);
 
   return (
-    <LocaleContext.Provider value={{ locale, setLocale, t: tWrapper }}>
+    <LocaleContext.Provider value={{ locale, setLocale, t, tc, tt, tp, tool }}>
       {children}
     </LocaleContext.Provider>
   );

@@ -9,7 +9,7 @@ import { useTranslation } from "@/contexts/LocaleContext";
 import Link from "next/link";
 
 export default function Home() {
-  const { t } = useTranslation();
+  const { t, tc, tool } = useTranslation();
   const featuredTools = tools.filter(t => t.isFeatured).slice(0, 6);
   const verifiedCount = tools.filter(t => t.isVerified).length;
   const indieCount = tools.filter(t => t.indieMade).length;
@@ -112,19 +112,22 @@ export default function Home() {
         </div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredTools.map((tool) => (
-            <Link key={tool.id} href={`/tools/${tool.slug}`}>
-              <ToolCard
-                name={tool.name}
-                description={tool.shortDesc}
-                category={tool.category}
-                pricing={tool.pricingModel === "free" ? t('pricing.free') : `$${tool.monthlyCostMin}${t('tool.perMonth')}`}
-                verified={tool.isVerified}
-                indieMade={tool.indieMade}
-                featured={tool.isFeatured}
-              />
-            </Link>
-          ))}
+          {featuredTools.map((featuredTool) => {
+            const toolTrans = tool(featuredTool.slug);
+            return (
+              <Link key={featuredTool.id} href={`/tools/${featuredTool.slug}`}>
+                <ToolCard
+                  name={featuredTool.name}
+                  description={toolTrans.shortDesc || featuredTool.shortDesc}
+                  category={featuredTool.category}
+                  pricing={featuredTool.pricingModel === "free" ? t('pricing.free') : `$${featuredTool.monthlyCostMin}${t('tool.perMonth')}`}
+                  verified={featuredTool.isVerified}
+                  indieMade={featuredTool.indieMade}
+                  featured={featuredTool.isFeatured}
+                />
+              </Link>
+            );
+          })}
         </div>
       </section>
 
@@ -144,7 +147,7 @@ export default function Home() {
                   <div className="w-14 h-14 mx-auto mb-3 bg-[hsl(var(--primary))]/10 rounded-xl flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
                     {category.icon}
                   </div>
-                  <p className="font-medium mb-1">{category.label}</p>
+                  <p className="font-medium mb-1">{tc(category.id)}</p>
                   <p className="text-xs text-[hsl(var(--muted-foreground))]">{count} {t('categories.tools')}</p>
                 </div>
               </Link>

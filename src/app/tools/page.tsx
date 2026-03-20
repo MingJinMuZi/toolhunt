@@ -1,41 +1,71 @@
-import { Sparkles } from "lucide-react";
-import { ToolsList } from "@/components/tools-list";
-import Link from "next/link";
+"use client";
 
-export const metadata = {
-  title: "All Tools - ToolHunt",
-  description: "Browse all AI tools for indie hackers and solopreneurs. Find the best tools for coding, marketing, design, and productivity.",
-};
+import { Sparkles, Menu, X, Globe, Sun, Moon } from "lucide-react";
+import { ToolsList } from "@/components/tools-list";
+import { useTranslation } from "@/contexts/LocaleContext";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { LanguageSwitcher } from "@/components/language-switcher";
+import Link from "next/link";
+import { useState } from "react";
 
 export default function ToolsPage() {
+  const { t } = useTranslation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <main className="min-h-screen">
       {/* Header */}
-      <header className="border-b border-[hsl(var(--border))]">
+      <header className="border-b border-[hsl(var(--border))] sticky top-0 z-50 bg-[hsl(var(--background))]/80 backdrop-blur-lg">
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-2">
             <Sparkles className="w-6 h-6 text-[hsl(var(--primary))]" />
             <span className="text-xl font-bold">ToolHunt</span>
           </Link>
-          <nav className="flex items-center gap-6">
+          
+          {/* Desktop Nav */}
+          <nav className="hidden md:flex items-center gap-6">
             <Link href="/tools" className="text-sm text-[hsl(var(--primary))]">
-              All Tools
+              {t('nav.allTools')}
+            </Link>
+            <Link href="/favorites" className="text-sm text-[hsl(var(--foreground))] hover:text-[hsl(var(--primary))] transition-colors">
+              {t('nav.favorites')}
             </Link>
             <Link href="/submit" className="text-sm text-[hsl(var(--foreground))] hover:text-[hsl(var(--primary))] transition-colors">
-              Submit Tool
-            </Link>
-            <Link href="/about" className="text-sm text-[hsl(var(--foreground))] hover:text-[hsl(var(--primary))] transition-colors">
-              About
+              {t('nav.submit')}
             </Link>
           </nav>
+
+          <div className="flex items-center gap-3">
+            <LanguageSwitcher />
+            <ThemeToggle />
+            
+            {/* Mobile Menu Button */}
+            <button 
+              className="md:hidden p-2"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile Menu */}
+        {mobileMenuOpen && (
+          <div className="md:hidden border-t border-[hsl(var(--border))] px-4 py-4">
+            <nav className="flex flex-col gap-3">
+              <Link href="/tools" className="text-[hsl(var(--primary))]">{t('nav.allTools')}</Link>
+              <Link href="/favorites" className="text-[hsl(var(--foreground))]/70">{t('nav.favorites')}</Link>
+              <Link href="/submit" className="text-[hsl(var(--foreground))]/70">{t('nav.submit')}</Link>
+            </nav>
+          </div>
+        )}
       </header>
 
       {/* Content */}
       <section className="container mx-auto px-4 py-8">
-        <h1 className="text-3xl font-bold mb-2">All AI Tools</h1>
+        <h1 className="text-3xl font-bold mb-2">{t('nav.allTools')}</h1>
         <p className="text-[hsl(var(--foreground))]/60 mb-8">
-          Discover the best AI tools for indie hackers and solopreneurs
+          {t('home.hero.subtitle')}
         </p>
 
         <ToolsList />
@@ -44,7 +74,7 @@ export default function ToolsPage() {
       {/* Footer */}
       <footer className="border-t border-[hsl(var(--border))] py-8 mt-12">
         <div className="container mx-auto px-4 text-center text-sm text-[hsl(var(--foreground))]/60">
-          <p>© 2026 ToolHunt. Made with ❤️ for indie hackers.</p>
+          <p>{t('footer.copyright')}</p>
         </div>
       </footer>
     </main>

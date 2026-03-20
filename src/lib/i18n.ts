@@ -222,3 +222,58 @@ export function t(key: string, locale: Locale = defaultLocale, params?: Record<s
   
   return text;
 }
+
+// 分类名称翻译映射
+export const categoryNames: Record<string, Record<Locale, string>> = {
+  "all": { zh: "全部", en: "All" },
+  "coding": { zh: "编程开发", en: "Coding" },
+  "productivity": { zh: "效率工具", en: "Productivity" },
+  "creative": { zh: "创意设计", en: "Creative" },
+  "agents": { zh: "AI助手", en: "AI Agents" },
+  "content": { zh: "内容创作", en: "Content" },
+  "automation": { zh: "自动化", en: "Automation" },
+  "video": { zh: "视频工具", en: "Video" },
+  "audio": { zh: "音频工具", en: "Audio" },
+  "marketing": { zh: "营销工具", en: "Marketing" },
+  "design": { zh: "设计工具", en: "Design" },
+  "writing": { zh: "写作工具", en: "Writing" },
+  "research": { zh: "研究学习", en: "Research" },
+  "business": { zh: "商业工具", en: "Business" },
+  "support": { zh: "客服支持", en: "Support" },
+  "education": { zh: "教育学习", en: "Education" },
+  "sales": { zh: "销售工具", en: "Sales" }
+};
+
+// 获取分类名称
+export function getCategoryName(categoryId: string, locale: Locale = defaultLocale): string {
+  return categoryNames[categoryId]?.[locale] || categoryId;
+}
+
+// 标签名称翻译映射
+export const tagNames: Record<string, Record<Locale, string>> = {
+  "free": { zh: "免费", en: "Free" },
+  "open-source": { zh: "开源", en: "Open Source" },
+  "no-code": { zh: "无代码", en: "No-Code" },
+  "api": { zh: "API", en: "API" },
+  "chrome-extension": { zh: "Chrome扩展", en: "Chrome Extension" },
+  "mobile": { zh: "移动端", en: "Mobile" },
+  "self-hosted": { zh: "自托管", en: "Self-Hosted" },
+  "enterprise": { zh: "企业版", en: "Enterprise" }
+};
+
+// 获取标签名称
+export function getTagName(tagId: string, locale: Locale = defaultLocale): string {
+  return tagNames[tagId]?.[locale] || tagId;
+}
+
+// 定价模式翻译
+export const pricingLabels: Record<string, Record<Locale, { label: string; desc: string }>> = {
+  "free": { zh: { label: "完全免费", desc: "无需付费即可使用" }, en: { label: "Free", desc: "No payment required" } },
+  "freemium": { zh: { label: "免费增值", desc: "免费版可用，付费解锁更多" }, en: { label: "Freemium", desc: "Free tier with paid upgrades" } },
+  "paid": { zh: { label: "付费工具", desc: "需要付费订阅" }, en: { label: "Paid", desc: "Subscription required" } }
+};
+
+// 获取定价标签
+export function getPricingLabel(pricing: string, locale: Locale = defaultLocale): { label: string; desc: string } {
+  return pricingLabels[pricing]?.[locale] || { label: pricing, desc: "" };
+}

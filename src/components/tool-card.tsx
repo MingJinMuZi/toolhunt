@@ -1,4 +1,7 @@
+"use client";
+
 import { Verified, Heart, Star } from "lucide-react";
+import { useTranslation } from "@/contexts/LocaleContext";
 
 interface ToolCardProps {
   name: string;
@@ -42,6 +45,7 @@ export function ToolCard({
   featured = false,
   logoUrl,
 }: ToolCardProps) {
+  const { t, tc } = useTranslation();
   const categoryInfo = categoryIcons[category] || { icon: "🔧", color: "from-gray-500 to-gray-400" };
 
   return (
@@ -59,7 +63,7 @@ export function ToolCard({
         <div className="absolute -top-2 -right-2 z-10">
           <span className="flex items-center gap-1 px-2.5 py-1 bg-gradient-to-r from-[hsl(var(--featured))] to-orange-400 text-black text-xs font-semibold rounded-full shadow-lg">
             <Star className="w-3 h-3" />
-            精选
+            {t('tool.featured')}
           </span>
         </div>
       )}
@@ -86,13 +90,13 @@ export function ToolCard({
             {verified && (
               <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-[hsl(var(--accent))]/10 text-[hsl(var(--accent))] text-xs rounded-full">
                 <Verified className="w-3 h-3" />
-                已验证
+                {t('tool.verified')}
               </span>
             )}
             {indieMade && (
               <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-[hsl(var(--featured))]/10 text-[hsl(var(--featured))] text-xs rounded-full">
                 <Heart className="w-3 h-3" />
-                独立
+                {t('tool.indie')}
               </span>
             )}
           </div>
@@ -107,7 +111,7 @@ export function ToolCard({
       {/* Footer */}
       <div className="flex items-center justify-between pt-3 border-t border-[hsl(var(--border))]">
         <span className="text-xs px-2.5 py-1 bg-[hsl(var(--background))] rounded-lg text-[hsl(var(--muted-foreground))] capitalize">
-          {categoryInfo.icon} {category}
+          {categoryInfo.icon} {tc(category)}
         </span>
         <span className={`text-sm font-semibold ${pricing === "免费" || pricing === "Free" ? "text-green-500" : "text-[hsl(var(--foreground))]"}`}>
           {pricing}
