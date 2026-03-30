@@ -1,6 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // 静态导出 - Cloudflare Pages 需要
+  output: 'export',
+  // 解决 Next.js 多个 lockfile 的警告
+  outputFileTracingRoot: '/root/.openclaw/workspace/projects/toolhunt',
   images: {
     unoptimized: true,
   },

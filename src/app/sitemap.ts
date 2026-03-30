@@ -2,6 +2,9 @@ import { MetadataRoute } from 'next'
 import { tools } from '@/data/tools'
 import { categories } from '@/data/categories'
 
+// 静态导出配置
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://toolhunt.ai'
   

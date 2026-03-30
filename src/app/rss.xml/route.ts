@@ -1,6 +1,9 @@
 import { tools } from "@/data/tools";
 import { categories } from "@/data/categories";
 
+// 静态导出配置
+export const dynamic = "force-static";
+
 export async function GET() {
   const baseUrl = "https://toolhunt.ai";
   const now = new Date().toUTCString();
