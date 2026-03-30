@@ -9,9 +9,14 @@ export function useLocale() {
 
   useEffect(() => {
     setMounted(true);
-    const saved = localStorage.getItem("locale") as Locale;
-    if (saved && (saved === "zh" || saved === "en")) {
-      setLocale(saved);
+    try {
+      const saved = localStorage.getItem("locale") as Locale;
+      if (saved && (saved === "zh" || saved === "en")) {
+        setLocale(saved);
+      }
+    } catch {
+      // localStorage 不可用或数据损坏，使用默认语言
+      console.warn("localStorage unavailable, using default locale");
     }
   }, []);
 
@@ -21,7 +26,11 @@ export function useLocale() {
 
   const changeLocale = (newLocale: Locale) => {
     setLocale(newLocale);
-    localStorage.setItem("locale", newLocale);
+    try {
+      localStorage.setItem("locale", newLocale);
+    } catch {
+      console.warn("localStorage unavailable, locale not persisted");
+    }
   };
 
   return { locale, setLocale: changeLocale, t, mounted };

@@ -23,34 +23,43 @@ export function FavoriteButton({ toolId, toolName, toolSlug }: FavoriteButtonPro
 
   useEffect(() => {
     // 从localStorage读取收藏状态
-    const favorites: Favorite[] = JSON.parse(localStorage.getItem("favorites") || "[]");
-    setIsFavorite(favorites.some(f => f.id === toolId));
+    try {
+      const favorites: Favorite[] = JSON.parse(localStorage.getItem("favorites") || "[]");
+      setIsFavorite(favorites.some(f => f.id === toolId));
+    } catch {
+      // localStorage 不可用或数据损坏
+      setIsFavorite(false);
+    }
   }, [toolId]);
 
   const toggleFavorite = () => {
-    const favorites: Favorite[] = JSON.parse(localStorage.getItem("favorites") || "[]");
-    
-    if (isFavorite) {
-      // 移除收藏
-      const newFavorites = favorites.filter(f => f.id !== toolId);
-      localStorage.setItem("favorites", JSON.stringify(newFavorites));
-      setIsFavorite(false);
-    } else {
-      // 添加收藏
-      const newFavorite: Favorite = {
-        id: toolId,
-        name: toolName,
-        slug: toolSlug,
-        addedAt: new Date().toISOString(),
-      };
-      favorites.push(newFavorite);
-      localStorage.setItem("favorites", JSON.stringify(favorites));
-      setIsFavorite(true);
-    }
+    try {
+      const favorites: Favorite[] = JSON.parse(localStorage.getItem("favorites") || "[]");
+      
+      if (isFavorite) {
+        // 移除收藏
+        const newFavorites = favorites.filter(f => f.id !== toolId);
+        localStorage.setItem("favorites", JSON.stringify(newFavorites));
+        setIsFavorite(false);
+      } else {
+        // 添加收藏
+        const newFavorite: Favorite = {
+          id: toolId,
+          name: toolName,
+          slug: toolSlug,
+          addedAt: new Date().toISOString(),
+        };
+        favorites.push(newFavorite);
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        setIsFavorite(true);
+      }
 
-    // 显示提示
-    setShowToast(true);
-    setTimeout(() => setShowToast(false), 2000);
+      // 显示提示
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 2000);
+    } catch {
+      console.warn("localStorage unavailable, favorite not saved");
+    }
   };
 
   return (
@@ -93,15 +102,24 @@ export function FavoritesList() {
   const [favorites, setFavorites] = useState<Favorite[]>([]);
 
   useEffect(() => {
-    const stored = localStorage.getItem("favorites");
-    if (stored) {
-      setFavorites(JSON.parse(stored));
+    try {
+      const stored = localStorage.getItem("favorites");
+      if (stored) {
+        setFavorites(JSON.parse(stored));
+      }
+    } catch {
+      // localStorage 不可用或数据损坏
+      setFavorites([]);
     }
   }, []);
 
   const removeFavorite = (id: number) => {
     const newFavorites = favorites.filter(f => f.id !== id);
-    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    try {
+      localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    } catch {
+      console.warn("localStorage unavailable");
+    }
     setFavorites(newFavorites);
   };
 

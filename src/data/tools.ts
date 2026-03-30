@@ -6462,5 +6462,17 @@ export const tools: Tool[] = [
   }
 ];
 
+// 预计算统计数据，避免每次渲染都过滤
+export const toolsStats = {
+  total: tools.length,
+  verified: tools.filter(t => t.isVerified).length,
+  featured: tools.filter(t => t.isFeatured).length,
+  indieMade: tools.filter(t => t.indieMade).length,
+  free: tools.filter(t => t.pricingModel === "free").length,
+};
+
+// 预计算 featured 工具列表（首页用）
+export const featuredTools = tools.filter(t => t.isFeatured).slice(0, 6);
+
 // 重新导出categories，使用categories.ts中的完整定义
 export { categories } from "./categories";

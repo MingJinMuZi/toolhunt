@@ -4,17 +4,21 @@ import { Search, Sparkles, Verified, Heart, ArrowRight, Zap, TrendingUp, Star } 
 import { Button } from "@/components/ui/button";
 import { ToolCard } from "@/components/tool-card";
 import { Header } from "@/components/header";
-import { tools, categories } from "@/data/tools";
+import { featuredTools, toolsStats, categories } from "@/data/tools";
 import { useTranslation } from "@/contexts/LocaleContext";
 import Link from "next/link";
+import { useMemo } from "react";
 
 export default function Home() {
   const { t, tc, tool } = useTranslation();
-  const featuredTools = tools.filter(t => t.isFeatured).slice(0, 6);
-  const verifiedCount = tools.filter(t => t.isVerified).length;
-  const indieCount = tools.filter(t => t.indieMade).length;
-  const featuredCount = tools.filter(t => t.isFeatured).length;
-  const freeCount = tools.filter(t => t.pricingModel === "free").length;
+
+  // 使用预计算的统计数据，避免每次渲染都过滤
+  const { total, verified, featured, indieMade, free } = toolsStats;
+
+  // 预计算分类计数（只计算一次）
+  const categoriesWithCount = useMemo(() => {
+    return categories.slice(1, 13);
+  }, []);
 
   return (
     <main className="min-h-screen relative">
@@ -32,7 +36,7 @@ export default function Home() {
       <section className="container mx-auto px-4 py-16 md:py-24 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 bg-[hsl(var(--primary))]/10 border border-[hsl(var(--primary))]/20 rounded-full text-sm text-[hsl(var(--primary))] mb-8 animate-fade-in">
           <TrendingUp className="w-4 h-4" />
-          <span>{tools.length}+ {t('home.hero.featured')} AI Tools</span>
+          <span>{total}+ {t('home.hero.featured')} AI Tools</span>
         </div>
         
         <h1 className="text-4xl md:text-6xl font-bold mb-6 leading-tight animate-fade-in">
@@ -50,7 +54,7 @@ export default function Home() {
             <div className="relative group">
               <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-[hsl(var(--muted-foreground))] group-hover:text-[hsl(var(--primary))] transition-colors" />
               <div className="w-full pl-14 py-5 bg-[hsl(var(--card))] border-2 border-[hsl(var(--border))] rounded-2xl text-left text-[hsl(var(--muted-foreground))] group-hover:border-[hsl(var(--primary))]/50 transition-all cursor-pointer shadow-lg">
-                {t('home.hero.search', { count: String(tools.length) })}
+                {t('home.hero.search', { count: String(total) })}
               </div>
               <div className="absolute right-5 top-1/2 -translate-y-1/2 px-3 py-1.5 bg-[hsl(var(--primary))] text-white text-xs rounded-lg">
                 <ArrowRight className="w-4 h-4" />
@@ -64,28 +68,28 @@ export default function Home() {
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-1">
               <Verified className="w-5 h-5 text-[hsl(var(--accent))]" />
-              <span className="text-3xl font-bold">{verifiedCount}</span>
+              <span className="text-3xl font-bold">{verified}</span>
             </div>
             <span className="text-sm text-[hsl(var(--muted-foreground))]">{t('home.hero.verified')}</span>
           </div>
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-1">
               <Heart className="w-5 h-5 text-[hsl(var(--featured))]" />
-              <span className="text-3xl font-bold">{indieCount}</span>
+              <span className="text-3xl font-bold">{indieMade}</span>
             </div>
             <span className="text-sm text-[hsl(var(--muted-foreground))]">{t('home.hero.indieMade')}</span>
           </div>
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-1">
               <Star className="w-5 h-5 text-[hsl(var(--primary))]" />
-              <span className="text-3xl font-bold">{featuredCount}</span>
+              <span className="text-3xl font-bold">{featured}</span>
             </div>
             <span className="text-sm text-[hsl(var(--muted-foreground))]">{t('home.hero.featured')}</span>
           </div>
           <div className="text-center">
             <div className="flex items-center justify-center gap-2 mb-1">
               <Sparkles className="w-5 h-5 text-green-500" />
-              <span className="text-3xl font-bold">{freeCount}</span>
+              <span className="text-3xl font-bold">{free}</span>
             </div>
             <span className="text-sm text-[hsl(var(--muted-foreground))]">{t('home.hero.free')}</span>
           </div>
@@ -139,8 +143,7 @@ export default function Home() {
         </div>
         
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-          {categories.slice(1, 13).map((category) => {
-            const count = tools.filter(t => t.category === category.id).length;
+          {categoriesWithCount.map((category) => {
             return (
               <Link key={category.id} href={`/tools?category=${category.id}`} className="group">
                 <div className="bg-[hsl(var(--card))] border border-[hsl(var(--border))] rounded-2xl p-6 text-center hover:border-[hsl(var(--primary))]/50 transition-all hover:-translate-y-1 hover:shadow-xl">
@@ -148,7 +151,6 @@ export default function Home() {
                     {category.icon}
                   </div>
                   <p className="font-medium mb-1">{tc(category.id)}</p>
-                  <p className="text-xs text-[hsl(var(--muted-foreground))]">{count} {t('categories.tools')}</p>
                 </div>
               </Link>
             );

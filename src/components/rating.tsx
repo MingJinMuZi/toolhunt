@@ -24,16 +24,26 @@ export function Rating({ toolId, toolName }: RatingProps) {
 
   useEffect(() => {
     // 从localStorage读取用户评分
-    const storedRating = localStorage.getItem(`rating-${toolId}`);
-    if (storedRating) {
-      const userRating = parseInt(storedRating);
-      setRating(prev => ({ ...prev, userRating }));
+    try {
+      const storedRating = localStorage.getItem(`rating-${toolId}`);
+      if (storedRating) {
+        const userRating = parseInt(storedRating);
+        if (!isNaN(userRating)) {
+          setRating(prev => ({ ...prev, userRating }));
+        }
+      }
+    } catch {
+      // localStorage 不可用
     }
   }, [toolId]);
 
   const handleRate = (value: number) => {
     // 保存用户评分到localStorage
-    localStorage.setItem(`rating-${toolId}`, value.toString());
+    try {
+      localStorage.setItem(`rating-${toolId}`, value.toString());
+    } catch {
+      console.warn("localStorage unavailable, rating not saved");
+    }
     setRating(prev => ({
       ...prev,
       userRating: value,
